@@ -1,0 +1,51 @@
+Package: facmodCS
+Type: Package
+Title: Factor Analytics for Asset Return Data
+Version: 2.3.0
+Date: 2022-06-24
+Author: Eric Zivot, Doug Martin, Sangeetha
+     Srinivasan, Avinash Acharya, Yi-An Chen,
+     Mido Shammaa, Lingjie Yi, Kirk Li, 
+Maintainer: Mido Shammaa <midoshammaa@yahoo.com>
+Description: Linear factor model fitting for asset returns (three major types-
+    time series, fundamental and statistical factor models); related risk
+    (volatility, VaR and ES) and performance attribution (factor-contributed vs
+    idiosyncratic returns); tabular displays of risk and performance reports;
+    factor model Monte Carlo, single and multiple imputation methods for 
+    simulating returns and backfilling unequal histories. The package authors 
+    would like to thank S&P GLOBAL MARKET INTELLIGENCE for kindly contributing 
+    fundamental data on 300 publicly traded companies to this open source package. 
+    Commonly referred to as "alpha factors" or "scores", the variables are 
+    generously provided for educational use with functions contained in this 
+    FactorAnalytics package. 
+License: GPL-2
+Depends: 
+    R (>= 3.5)
+Imports:
+    data.table,
+    xts,
+    zoo,
+    PerformanceAnalytics,
+    leaps,
+    lars,
+    sandwich,
+    lattice,
+    sn,
+    boot,
+    foreach,
+    parallel,
+    doSNOW,
+    RCurl,
+    tseries,
+	robustbase,
+	RobStatTM
+Suggests:
+    corrplot,
+    lmtest,
+    rugarch,
+    strucchange,
+    HH
+VignetteBuilder: knitr
+URL: https://github.com/braverock/FactorAnalytics
+RoxygenNote: 7.1.2
+Encoding: UTF-8
