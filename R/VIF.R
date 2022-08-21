@@ -39,32 +39,37 @@
 #' #Plot and print the time series of VIF values
 #'  vif(fit,isPrint=TRUE)
 #' @export
-
 vif <- function(ffmObj, digits=2, isPrint=T, isPlot =T, lwd =2,stripText.cex =1,axis.cex=1, title = TRUE, ...)
 { 
   # check input object validity
   if (!inherits(ffmObj, c("tsfm", "sfm", "ffm"))) 
     stop("Invalid argument: Object should be of class 'tsfm', 'sfm' or 'ffm'.")
-    
+  
   n.assets <- length(ffmObj$asset.names)
   exposure.vars= ffmObj$exposure.vars
   which.numeric <- sapply(ffmObj$data[,exposure.vars,drop=FALSE], is.numeric)
   exposures.num <- exposure.vars[which.numeric]
+  d_ <- ffmObj$date.var
   if(length(exposures.num) < 2)
   {
     stop(" At least 2 continous variables required to find VIF")
   }
-
+  
   object = ffmObj$data[exposures.num]
   object <- as.matrix(object)
   ncols <- dim(object)[2]
   time.periods = length(ffmObj$time.periods)
+  ffmObj$time.periods <- sort(ffmObj$time.periods)
+  
   vifs = matrix(0, nrow = time.periods, ncol = ncols)
   for(i in 1:time.periods)
   {
-    vifs[i,1:ncols] = sapply(seq(ncols), function(x)
-      1/(1 - summary(lm(object[((i-1)*n.assets+1) : (i*n.assets), x] ~
-                          object[((i-1)*n.assets+1) :(i*n.assets), -x]))$r.squared))
+    # vifs[i,1:ncols] = sapply(seq(ncols), function(x)
+    #   1/(1 - summary(lm(object[((i-1)*n.assets+1) : (i*n.assets), x] ~
+    #                       object[((i-1)*n.assets+1) :(i*n.assets), -x]))$r.squared))
+    rowsToConsider <- which(ffmObj$data[[d_]] == ffmObj$time.periods[i])
+    vifs[i,1:ncols] = sapply(seq(ncols), function(x) 
+      1/(1-summary(lm(object[rowsToConsider, x] ~ object[rowsToConsider, -x]))$r.squared))
   }
   colnames(vifs) <- dimnames(object)[[2]]
   vifs.xts = xts(vifs, order.by = ffmObj$time.periods)
@@ -79,7 +84,7 @@ vif <- function(ffmObj, digits=2, isPrint=T, isPlot =T, lwd =2,stripText.cex =1,
   vifs.xts = round(vifs.xts,digits = digits)
   out<-  list("Mean.VIF" = vifs.mean)
   ret<-  list("VIF" = vifs.xts)
-
+  
   if(isPrint)
   {
     print(c(out, ret))

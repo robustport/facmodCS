@@ -1,7 +1,7 @@
 Package: facmodCS
 Type: Package
 Title: Factor Analytics for Asset Return Data
-Version: 2.4.1
+Version: 2.4.2
 Date: 2022-06-24
 Author: Eric Zivot, Doug Martin, Sangeetha
      Srinivasan, Avinash Acharya, Yi-An Chen,
@@ -47,5 +47,5 @@ Suggests:
     HH
 VignetteBuilder: knitr
 URL: https://github.com/braverock/FactorAnalytics
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 Encoding: UTF-8
