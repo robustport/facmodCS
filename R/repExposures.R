@@ -184,42 +184,42 @@ repExposures <- function(ffmObj, weights = NULL, isPlot = TRUE, isPrint = TRUE, 
                        main = main)
              }, 
              "3L" = {  
-
+               
                ## Barplot of means and vols of style factor exposures, and of sector exposures 
-
-                 a = 100*colMeans(X[,exposures.num])
-                 b = 100*apply(X[,exposures.num],2,sd)
-                 c = rbind(a,b)
-                 sect = as.character(unique(dat[,exposures.char]))
-                 d = 100*colMeans(X[,sect])
-                if(length(exposures.num)>1)
-                {
-                  main1 = "Style Exposures Means"
-                  main2 = "Style Exposures Volatilities"
-                  main3 = "Sector Exposures"
-                }
-                 else if(length(exposures.num)==1)
-                 {
-                   main1 = "Style Exposures Mean"
-                   main2 = "Style Exposures Volatility"
-                   main3 = "Sector Exposures"
-                 }
-                dat.StMean = as.data.frame(list("ids" = rep(main1, length(a)), "variable"= names(a), "value"= as.numeric(a)))
-                dat.StVol = as.data.frame(list("ids" = rep(main2, length(b)), "variable"= names(b), "value"= as.numeric(b)))
-                dat.SecMean = as.data.frame(list("ids" = rep(main3, length(d)), "variable"= names(d), "value"= as.numeric(d)))
-                
-
-                plt1 = barchart(value~(variable)|"ids",group = ("ids"),data=dat.StMean,stack =TRUE,layout = layout,col = color,ylab = list(label = "Percentage (%)",cex = axis.cex),
+               
+               a = 100*colMeans(X[,exposures.num])
+               b = 100*apply(X[,exposures.num],2,sd)
+               c = rbind(a,b)
+               sect = as.character(unique(dat[,exposures.char]))
+               d = 100*colMeans(X[,sect])
+               if(length(exposures.num)>1)
+               {
+                 main1 = "Style Exposures Means"
+                 main2 = "Style Exposures Volatilities"
+                 main3 = "Sector Exposures"
+               }
+               else if(length(exposures.num)==1)
+               {
+                 main1 = "Style Exposures Mean"
+                 main2 = "Style Exposures Volatility"
+                 main3 = "Sector Exposures"
+               }
+               dat.StMean = as.data.frame(list("ids" = rep(main1, length(a)), "variable"= names(a), "value"= as.numeric(a)))
+               dat.StVol = as.data.frame(list("ids" = rep(main2, length(b)), "variable"= names(b), "value"= as.numeric(b)))
+               dat.SecMean = as.data.frame(list("ids" = rep(main3, length(d)), "variable"= names(d), "value"= as.numeric(d)))
+               
+               
+               plt1 = barchart(value~(variable)|ids,groups = ids,data=dat.StMean,stack =TRUE,layout = layout,col = color,ylab = list(label = "Percentage (%)",cex = axis.cex),
                                scales=list(y=list(cex=axis.cex), x=list(cex=axis.cex, rot = 90)),par.strip.text=list(col="black", cex = stripText.cex))
-                plt2 = barchart(value~(variable)|"ids",group = ("ids"),data=dat.StVol,stack =TRUE,layout = layout,col = color,ylab = list(label = "Percentage (%)",cex = axis.cex),
-                                scales=list(y=list(cex=axis.cex), x=list(cex=axis.cex, rot = 90)),par.strip.text=list(col="black", cex = stripText.cex))
-                plt3 = barchart(value~(variable)|"ids",group = ("ids"),data=dat.SecMean,stack =TRUE,layout = layout,col = color,ylab = list(label = "Percentage (%)",cex = axis.cex),
-                                scales=list(y=list(cex=axis.cex), x=list(cex=axis.cex, rot = 90)),par.strip.text=list(col="black", cex = stripText.cex), strip.left = F)
-                
-                print(plt1, split=c(1,1,2,2), more=TRUE)
-                print(plt2, split=c(2,1,2,2), more=TRUE)
-                print(plt3, position = c(.25,0,0.75,0.5), more = FALSE)
-                
+               plt2 = barchart(value~(variable)|ids,groups = ids,data=dat.StVol,stack =TRUE,layout = layout,col = color,ylab = list(label = "Percentage (%)",cex = axis.cex),
+                               scales=list(y=list(cex=axis.cex), x=list(cex=axis.cex, rot = 90)),par.strip.text=list(col="black", cex = stripText.cex))
+               plt3 = barchart(value~(variable)|ids,groups = ids,data=dat.SecMean,stack =TRUE,layout = layout,col = color,ylab = list(label = "Percentage (%)",cex = axis.cex),
+                               scales=list(y=list(cex=axis.cex), x=list(cex=axis.cex, rot = 90)),par.strip.text=list(col="black", cex = stripText.cex), strip.left = F)
+               
+               print(plt1, split=c(1,1,2,2), more=TRUE)
+               print(plt2, split=c(2,1,2,2), more=TRUE)
+               print(plt3, position = c(.25,0,0.75,0.5), more = FALSE)
+               
                
              },
              invisible()       
@@ -232,9 +232,9 @@ repExposures <- function(ffmObj, weights = NULL, isPlot = TRUE, isPrint = TRUE, 
         par(ask=TRUE)
       } else {which=NULL}   
     }
-  
-  }
     
+  }
+  
   
   if(isPrint){
     # tabular report 
