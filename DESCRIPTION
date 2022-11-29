@@ -40,12 +40,13 @@ Imports:
 	robustbase,
 	RobStatTM
 Suggests:
+    R.rsp
     corrplot,
     lmtest,
     rugarch,
     strucchange,
     HH
-VignetteBuilder: knitr
+VignetteBuilder: R.rsp
 URL: https://github.com/braverock/FactorAnalytics
 RoxygenNote: 7.2.1
 Encoding: UTF-8
