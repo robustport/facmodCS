@@ -48,5 +48,5 @@ Suggests:
     HH
 VignetteBuilder: R.rsp
 URL: https://github.com/braverock/FactorAnalytics
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.2
 Encoding: UTF-8
