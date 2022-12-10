@@ -112,7 +112,7 @@ In case the \code{ffm} object \code{x} contains only a single asset fit,
 plot.ffm can infer \code{asset.name} without user input.
 }
 \examples{
-
+\dontrun{
 # load data 
 data(stocksCRSP)
 data(factorsSPGMI)
@@ -154,7 +154,7 @@ plot(fit.style, which = 6)
 # This will display a histogram of residuals from the asset's factor model fit
 
 plot(fit.style, plot.single = TRUE, asset.name = "ALCO", which = 12)
-
+}
 }
 \seealso{
 \code{\link{fitFfm}}, \code{\link{residuals.ffm}},

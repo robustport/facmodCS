@@ -48,6 +48,7 @@ If \code{T} is large, you might prefer the more succint summary produced by
 \code{\link{print.ffm}}.
 }
 \examples{
+\dontrun{
 data("factorDataSetDjia5Yrs")
 
 # fit a fundamental factor model
@@ -64,7 +65,7 @@ summary(fit)
 
 # summary of lm fit for a single period
 summary(fit$factor.fit[[1]])
-
+}
 }
 \seealso{
 \code{\link{fitFfm}}, \code{\link[stats]{summary.lm}}

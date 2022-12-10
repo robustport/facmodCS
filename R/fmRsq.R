@@ -29,7 +29,7 @@
 #'                         The time series of the output values are also printed if \code{isPrint} is \code{TRUE} 
 #'
 #' @examples
-#'
+#' \dontrun{
 #' #Load the data
 #'  data("factorDataSetDjia5Yrs")
 #'
@@ -50,22 +50,12 @@
 #'
 #' #Plot and print the time series of Adj R-squared and VIF values
 #'  fmRsq(fit1, rsqAdj=TRUE, isPrint=TRUE, plt.type = 2)
-#' @rdname fmRsq
-#' @export
-
-fmRsq <- function(ffmObj, ...){
-  # check input object validity
-  if (!inherits(ffmObj, c("tsfm", "sfm", "ffm"))) {
-    stop("Invalid argument: Object should be of class 'tsfm', 'sfm' or 'ffm'.")
-  }
-  UseMethod("fmRsq")
-}
-
-#' @rdname fmRsq
-#' @method fmRsq ffm
+#'
+#' }
+#' 
 #' @export
 #' 
-fmRsq.ffm <- function(ffmObj, rsq=T, rsqAdj=F,plt.type= 2, digits=2, isPrint=T, isPlot =T, lwd =2,stripText.cex =1,axis.cex=1, title = TRUE, ...)
+fmRsq <- function(ffmObj, rsq=T, rsqAdj=F,plt.type= 2, digits=2, isPrint=T, isPlot =T, lwd =2,stripText.cex =1,axis.cex=1, title = TRUE, ...)
 {
   # set defaults and check input validity
   if (!inherits(ffmObj, "ffm"))
@@ -155,8 +145,8 @@ fmRsq.ffm <- function(ffmObj, rsq=T, rsqAdj=F,plt.type= 2, digits=2, isPrint=T, 
         panel.abline(h=0,lty = 3)
         panel.xyplot(...)}
       r2.combined = merge("Rsq" = r2.xts, "AdjRsq" =  adj.r2.xts)
-#       tsPlotMP(0.01*r2.combined,stripLeft = TRUE, scaleType = "same",
-#                color = "blue", yname = "", lwd = lwd, main = title.comb, type = "h", cex = 1.2)
+      #       tsPlotMP(0.01*r2.combined,stripLeft = TRUE, scaleType = "same",
+      #                color = "blue", yname = "", lwd = lwd, main = title.comb, type = "h", cex = 1.2)
       plt = xyplot(r2.combined,col = "blue", lwd =lwd, main = title.comb, type = "h",panel = panel,
                    scales = list(y = list(cex = axis.cex,relation="same"),x = list(cex =axis.cex)),par.strip.text = list(cex = stripText.cex),
                    strip.left = T, strip = F)

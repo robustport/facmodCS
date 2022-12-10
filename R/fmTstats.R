@@ -1,4 +1,4 @@
-#' @title  t-stats and plots for a fitted Fundamental Factor Model object 
+#' @title  fmTstats.ffm t-stats and plots for a fitted Fundamental Factor Model object 
 #' 
 #' @description
 #'  Calculate and plot the time series of t-statistic values and the
@@ -50,8 +50,8 @@
 #' \item{tstats}{ an xts object of t-stats values.}
 #' \item{z.alpha}{ critical value corresponding to the confidence interval.}
 #' 
-#' @examples 
-#'  
+#' @examples{
+#' \dontrun{
 #' data("factorDataSetDjia5Yrs")
 #'  
 #' #Fit a Ffm with style factors only
@@ -92,22 +92,10 @@
 #' #  library("HH")                   
 #' #  stats = fmTstats(fit.MICM, isPlot = TRUE, z.alpha =1.96,
 #' #                   whichPlot = "significantTstatsLikert")
-#' @rdname fmTstats
-#' @export
-
-fmTstats <- function(ffmObj, ...){
-  # check input object validity
-  if (!inherits(ffmObj, c("tsfm", "sfm", "ffm"))) {
-    stop("Invalid argument: Object should be of class 'tsfm', 'sfm' or 'ffm'.")
-  }
-  UseMethod("fmTstats")
-}
-
-#' @rdname fmTstats
-#' @method fmTstats ffm
+#' }
 #' @export
 #' 
-fmTstats.ffm<- function(ffmObj, isPlot = TRUE, isPrint = FALSE,
+fmTstats <- function(ffmObj, isPlot = TRUE, isPrint = FALSE,
                         whichPlot = "tStats", color = c("black", "cyan"), 
                         lwd = 2, digits =2, z.alpha = 1.96, layout = c(2, 3), 
                         type = "h", scale = "free", 

@@ -31,7 +31,7 @@
 #' \code{\link[stats]{predict.lm}}, \code{\link[robustbase]{predict.lmrob}}
 #' 
 #' @examples
-#' 
+#'\dontrun{
 #' # Load fundamental and return data
 #'  data("factorDataSetDjia5Yrs")
 #' 
@@ -47,7 +47,7 @@
 #' newdata$P2B <- rnorm(nrow(newdata))
 #' newdata$MKTCAP <- rnorm(nrow(newdata))
 #' pred.fund <- predict(fit, newdata)
-#' 
+#' }
 #' @method predict ffm
 #' @export
 #' 

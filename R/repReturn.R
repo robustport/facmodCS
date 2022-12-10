@@ -34,7 +34,7 @@
 #' 
 #' @author Douglas Martin, Lingjie Yi
 #' @examples 
-#'
+#' \dontrun{
 #' #Load fundamental and return data 
 #' data("stocks145scores6")
 #' dat = stocks145scores6
@@ -67,6 +67,7 @@
 #' repReturn(fit.cross, wtsStocks145GmvLo, isPrint = FALSE, isPlot = TRUE, 
 #'           which = 2, add.grid = FALSE, zeroLine = TRUE, color = 'Blue', 
 #'           scaleType = 'free')              
+#' }
 #' @export
 
 

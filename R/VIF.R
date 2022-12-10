@@ -27,7 +27,7 @@
 #'                         The time series of the output values are also printed if \code{isPrint} is \code{TRUE} 
 #'
 #' @examples
-#'
+#'\dontrun{
 #' #Load the data
 #'  data("factorDataSetDjia5Yrs")
 #'
@@ -38,6 +38,7 @@
 #'
 #' #Plot and print the time series of VIF values
 #'  vif(fit,isPrint=TRUE)
+#'  }
 #' @export
 vif <- function(ffmObj, digits=2, isPrint=T, isPlot =T, lwd =2,stripText.cex =1,axis.cex=1, title = TRUE, ...)
 { 

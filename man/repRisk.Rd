@@ -2,32 +2,10 @@
 % Please edit documentation in R/repRisk.R
 \name{repRisk}
 \alias{repRisk}
-\alias{repRisk.tsfm}
 \alias{repRisk.ffm}
 \title{Decompose portfolio risk into individual factor contributions and provide tabular report}
 \usage{
 repRisk(object, ...)
-
-\method{repRisk}{tsfm}(
-  object,
-  weights = NULL,
-  risk = c("Sd", "VaR", "ES"),
-  decomp = c("FPCR", "FCR", "FMCR"),
-  digits = NULL,
-  invert = FALSE,
-  nrowPrint = 20,
-  p = 0.05,
-  type = c("np", "normal"),
-  use = "pairwise.complete.obs",
-  sliceby = c("factor", "asset"),
-  isPrint = TRUE,
-  isPlot = FALSE,
-  layout = NULL,
-  stripText.cex = 1,
-  axis.cex = 1,
-  portfolio.only = FALSE,
-  ...
-)
 
 \method{repRisk}{ffm}(
   object,
@@ -80,12 +58,6 @@ or plot}
 \item{type}{one of "np" (non-parametric) or "normal" for calculating VaR & Es. 
 Default is "np".}
 
-\item{use}{an optional character string giving a method for computing factor
-covariances in the presence of missing values. This must be (an 
-abbreviation of) one of the strings "everything", "all.obs", 
-"complete.obs", "na.or.complete", or "pairwise.complete.obs". Default is 
-"pairwise.complete.obs".}
-
 \item{sliceby}{one of 'factor' (slice/condition by factor) or 'asset' (slice/condition by asset) or 'riskType'
 Used only when isPlot = 'TRUE'}
 
@@ -101,6 +73,12 @@ Used only when isPlot = 'TRUE'}
 
 \item{portfolio.only}{logical variable to choose if to calculate portfolio only decomposition, in which case multiple risk measures are 
 allowed.}
+
+\item{use}{an optional character string giving a method for computing factor
+covariances in the presence of missing values. This must be (an 
+abbreviation of) one of the strings "everything", "all.obs", 
+"complete.obs", "na.or.complete", or "pairwise.complete.obs". Default is 
+"pairwise.complete.obs".}
 }
 \value{
 A table containing 
@@ -124,22 +102,7 @@ Expected Tail Loss or Expected Shortfall (ES) of the return of individual asset 
 return of a portfolio based on Euler's theorem, given the fitted factor model.
 }
 \examples{
-# Time Series Factor Model
-
-data(managers, package = 'PerformanceAnalytics')
-
-fit.macro <- fitTsfm(asset.names = colnames(managers[,(1:6)]),
-                     factor.names = colnames(managers[,(7:9)]),
-                     rf.name = colnames(managers[,10]), 
-                     data = managers)
-                     
-report <- repRisk(fit.macro, risk = "ES", decomp = 'FPCR', 
-                  nrowPrint = 10)
-report 
-
-# plot
-repRisk(fit.macro, risk = "ES", decomp = 'FPCR', isPrint = FALSE, 
-        isPlot = TRUE)
+\dontrun{
 
 # Fundamental Factor Model
 data("stocks145scores6")
@@ -177,8 +140,9 @@ repRisk(fit.cross, wtsStocks145GmvLo, risk = c("VaR", "ES"), decomp = 'FPCR',
 repRisk(fit.cross, wtsStocks145GmvLo, risk = "Sd", decomp = 'FPCR', 
         isPrint = FALSE, nrowPrint = 15, isPlot = TRUE, layout = c(4,2))  
 }
+}
 \seealso{
-\code{\link{fitTsfm}}, \code{\link{fitFfm}}
+\code{\link{fitFfm}}
 for the different factor model fitting functions.
 }
 \author{

@@ -1,7 +1,7 @@
 Package: facmodCS
 Type: Package
 Title: Factor Analytics for Asset Return Data
-Version: 2.4.4
+Version: 2.4.5
 Date: 2022-06-24
 Author: Eric Zivot, Doug Martin, Sangeetha
      Srinivasan, Avinash Acharya, Yi-An Chen,
@@ -26,25 +26,16 @@ Imports:
     xts,
     zoo,
     PerformanceAnalytics,
-    leaps,
-    lars,
     sandwich,
     lattice,
     sn,
-    boot,
-    foreach,
-    parallel,
-    doSNOW,
-    RCurl,
     tseries,
 	robustbase,
-	RobStatTM
+	RobStatTM,
+	knitr,
+	PCRA
 Suggests:
-    corrplot,
-    lmtest,
-    rugarch,
-    strucchange,
-    HH
+    rugarch
 VignetteBuilder: knitr
 URL: https://github.com/braverock/FactorAnalytics
 RoxygenNote: 7.2.1

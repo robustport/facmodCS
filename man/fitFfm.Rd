@@ -208,7 +208,8 @@ re-factored, tested, corrected and expanded the functionalities and S3
 methods.
 }
 \examples{
-
+\dontrun{
+library(PCRA)
 # load data 
 data(stocksCRSP)
 data(factorsSPGMI)
@@ -246,7 +247,7 @@ fundamental_model <- fitFfm(data = stocks_factors,
  summary(sector_model)
 
                
-
+}
 }
 \references{
 Menchero, J. (2010). The Characteristics of Factor Portfolios. Journal of
