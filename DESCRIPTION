@@ -1,23 +1,23 @@
 Package: facmodCS
 Type: Package
-Title: Factor Analytics for Asset Return Data
-Version: 2.4.5
+Title: Cross-Section Factor Models
+Version: 2.5
 Date: 2022-06-24
-Author: Eric Zivot, Doug Martin, Sangeetha
-     Srinivasan, Avinash Acharya, Yi-An Chen,
-     Mido Shammaa, Lingjie Yi, Kirk Li, 
+Author: Mido Shammaa, Doug Martin, Avinash Acharya, Kirk Li,
+    Yi-An Chen, Lingjie Yi,  
 Maintainer: Mido Shammaa <midoshammaa@yahoo.com>
-Description: Linear factor model fitting for asset returns (three major types-
-    time series, fundamental and statistical factor models); related risk
-    (volatility, VaR and ES) and performance attribution (factor-contributed vs
-    idiosyncratic returns); tabular displays of risk and performance reports;
-    factor model Monte Carlo, single and multiple imputation methods for 
-    simulating returns and backfilling unequal histories. The package authors 
-    would like to thank S&P GLOBAL MARKET INTELLIGENCE for kindly contributing 
-    fundamental data on 300 publicly traded companies to this open source package. 
-    Commonly referred to as "alpha factors" or "scores", the variables are 
-    generously provided for educational use with functions contained in this 
-    FactorAnalytics package. 
+Description: Linear cross-section factor model fitting with least-squares and
+    and robust fitting the lmrobdetMM() function from RobStatTM; related
+    volatility, VaR and ES risk and performance attribution (factor-contributed
+    vs idiosyncratic returns); tabular displays of risk and performance reports;
+    factor model Monte Carlo. The package authors would like to thank Chicago
+    Research on Security Prices,LLC (CRSP) for the cross-section of about 300
+    CRSP stocks data (in the data.table object stocksCRSP, and S&P GLOBAL MARKET
+    INTELLIGENCE for contributing 14 factor scores (a.k.a "alpha factors".and
+    "factor exposures") fundamental data on the 300 companies in the data.table
+    object factorSPGMI.  The stocksCRSP and factorsSPGMI data are not covered by
+    the GPL-2 license, are not provided as open source pf any king, and they are
+    not to be redistributed in any form.
 License: GPL-2
 Depends: 
     R (>= 3.5)
@@ -35,8 +35,11 @@ Imports:
 	knitr,
 	PCRA
 Suggests:
-    rugarch
-VignetteBuilder: knitr
-URL: https://github.com/braverock/FactorAnalytics
-RoxygenNote: 7.2.1
+    corrplot,
+    lmtest,
+    rugarch,
+    strucchange,
+    HH
+URL: https://github.com/robustport/facmodCS
+RoxygenNote: 7.2.2
 Encoding: UTF-8
