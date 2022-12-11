@@ -4,7 +4,7 @@
 #' Expected Tail Loss or Expected Shortfall (ES) of the return of individual asset within a portfolio 
 #' return of a portfolio based on Euler's theorem, given the fitted factor model.
 #' 
-#' @importFrom lattice barchart
+#' @importFrom lattice barchart x
 #' @importFrom data.table melt as.data.table
 #' 
 #' @param object fit object of class \code{tsfm}, or \code{ffm}.
