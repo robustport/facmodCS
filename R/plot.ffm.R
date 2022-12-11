@@ -107,7 +107,7 @@
 #' G(7,8) - \code{\link[corrplot]{corrplot.mixed}} (requires corrplot package).
 #'
 #' @examples
-#'
+#'\dontrun{
 #' # load data 
 #'data(stocksCRSP)
 #'data(factorsSPGMI)
@@ -149,7 +149,7 @@
 #' # This will display a histogram of residuals from the asset's factor model fit
 #' 
 #' plot(fit.style, plot.single = TRUE, asset.name = "ALCO", which = 12)
-#'
+#' }
 #' @method plot ffm
 #' @export
 

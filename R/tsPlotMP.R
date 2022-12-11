@@ -6,10 +6,10 @@
 #' @importFrom xts xts
 #' 
 #' @param ret an time series exposure/return object 
-#' @param add.grid logical varible.If 'TRUE', type = c('l', 'g'); If 'FALSE', type = c('l')
+#' @param add.grid logical variable.If 'TRUE', type = c('l', 'g'); If 'FALSE', type = c('l')
 #' @param layout layout is a numeric vector of length 2 or 3 giving the number of columns, rows, and pages (optional) in a multipanel display.
 #' @param type character. type of the plot; 'l' denotes a line, 'p' denotes a point, and 'b' and 'o' both denote both together.deafault is 'l'.
-#' @param yname character or espression giving label(s) for the y-axis 
+#' @param yname character or expression giving label(s) for the y-axis 
 #' @param Pct Pct controls if use the percentage value. 
 #' @param scaleType scaleType controls if use a same scale of y-axis, choose from c('same', 'free')
 #' @param stripLeft logical variable to choose the position of strip, 'TRUE' for drawing strips on the left of each panel, 'FALSE' for drawing strips on the top of each panel
@@ -22,7 +22,7 @@
 #' @param panel function to add customized lines to the lattice plot. See examples.
 #' @author Douglas Martin, Lingjie Yi
 #' @examples 
-#'
+#' \dontrun{
 #' #Load the data
 #' data("stocks145scores6")
 #' dat = stocks145scores6
@@ -41,7 +41,8 @@
 #' 			panel.abline(h = 0, lty = 3) 
 #' 			panel.abline(h = 0.1, lty = 3)
 #' 			panel.abline(h = -0.1, lty = 3)
-#' 			panel.xyplot(...)})   
+#' 			panel.xyplot(...)}) 
+#' }  
 #' @export
 
 # Lattice type time series plotting function

@@ -37,7 +37,7 @@
 #' 
 #' @author Douglas Martin, Lingjie Yi, Avinash
 #' @examples 
-#'
+#'\dontrun{
 #' #Load fundamental and return data 
 #' # Fundamental Factor Model
 #' data("stocks145scores6")
@@ -70,9 +70,8 @@
 #'              
 #' repExposures(fit.cross, wtsStocks145GmvLo, isPrint = FALSE, isPlot = TRUE, 
 #'              which = 3, add.grid = FALSE, zeroLine = FALSE, color = 'Blue')
+#' }
 #' @export
-
-
 repExposures <- function(ffmObj, weights = NULL, isPlot = TRUE, isPrint = TRUE, scaleType = 'free',
                          stripText.cex =1,axis.cex=1,stripLeft = TRUE, layout = NULL, color = "blue",notch = FALSE, digits = 1, titleText = TRUE, 
                          which = NULL,type="b", ...) {

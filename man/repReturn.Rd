@@ -61,7 +61,7 @@ A K x 2 matrix containing mean and standard deviation of K factors
 Decompostite return of portfolio into return of different factors based on fundamental factor model. This method takes fundamental factor model fit, "ffm" object, and portfolio weight as inputs and generates numeric summary and plot visualization.
 }
 \examples{
-
+\dontrun{
 #Load fundamental and return data 
 data("stocks145scores6")
 dat = stocks145scores6
@@ -94,6 +94,7 @@ repReturn(fit.cross, wtsStocks145GmvLo, isPrint = FALSE, isPlot = TRUE,
 repReturn(fit.cross, wtsStocks145GmvLo, isPrint = FALSE, isPlot = TRUE, 
           which = 2, add.grid = FALSE, zeroLine = TRUE, color = 'Blue', 
           scaleType = 'free')              
+}
 }
 \author{
 Douglas Martin, Lingjie Yi

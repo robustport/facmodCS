@@ -2,12 +2,9 @@
 % Please edit documentation in R/fmRsq.R
 \name{fmRsq}
 \alias{fmRsq}
-\alias{fmRsq.ffm}
 \title{Factor Model R-Squared and Adj R-Squared Values}
 \usage{
-fmRsq(ffmObj, ...)
-
-\method{fmRsq}{ffm}(
+fmRsq(
   ffmObj,
   rsq = T,
   rsqAdj = F,
@@ -24,8 +21,6 @@ fmRsq(ffmObj, ...)
 }
 \arguments{
 \item{ffmObj}{an object of class \code{ffm} produced by \code{fitFfm}}
-
-\item{...}{potentially further arguments passed.}
 
 \item{rsq}{logical; if \code{TRUE}, Factor Model R-squared values are computed for the portfolio. Default is \code{TRUE}.}
 
@@ -48,6 +43,8 @@ Else, only the mean values are printed. Default is \code{TRUE}.}
 \item{axis.cex}{a number indicating the amount by which axis in the plot(s) should be scaled relative to the default. 1=default, 1.5 is 50\% larger, 0.5 is 50\% smaller, etc.}
 
 \item{title}{logical. if \code{TRUE}, the plots will have the main tiltle. default is \code{TRUE}.}
+
+\item{...}{potentially further arguments passed.}
 }
 \value{
 \code{fmRsq} returns the sample mean values and plots the time series of corresponding R squared values
@@ -58,7 +55,7 @@ Else, only the mean values are printed. Default is \code{TRUE}.}
 Calcluate and plot the Factor Model R-Squared, Adjusted R-Squared for a portfolio of assets
 }
 \examples{
-
+\dontrun{
 #Load the data
  data("factorDataSetDjia5Yrs")
 
@@ -79,6 +76,9 @@ Calcluate and plot the Factor Model R-Squared, Adjusted R-Squared for a portfoli
 
 #Plot and print the time series of Adj R-squared and VIF values
  fmRsq(fit1, rsqAdj=TRUE, isPrint=TRUE, plt.type = 2)
+
+}
+
 }
 \author{
 Avinash Acharya and Doug Martin

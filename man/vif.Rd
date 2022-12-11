@@ -49,7 +49,7 @@ Calculate and plot the Factor Model Variance Inflaction Factor Values for a fitt
                  So, at least 2 explanatory variables are required in \code{exposure.vars} of fitted model to find the VIF.
 }
 \examples{
-
+\dontrun{
 #Load the data
  data("factorDataSetDjia5Yrs")
 
@@ -60,6 +60,7 @@ require(FactorAnalytics)
 
 #Plot and print the time series of VIF values
  vif(fit,isPrint=TRUE)
+ }
 }
 \author{
 Avinash Acharya

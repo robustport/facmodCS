@@ -25,13 +25,13 @@ tsPlotMP(
 \arguments{
 \item{ret}{an time series exposure/return object}
 
-\item{add.grid}{logical varible.If 'TRUE', type = c('l', 'g'); If 'FALSE', type = c('l')}
+\item{add.grid}{logical variable.If 'TRUE', type = c('l', 'g'); If 'FALSE', type = c('l')}
 
 \item{layout}{layout is a numeric vector of length 2 or 3 giving the number of columns, rows, and pages (optional) in a multipanel display.}
 
 \item{type}{character. type of the plot; 'l' denotes a line, 'p' denotes a point, and 'b' and 'o' both denote both together.deafault is 'l'.}
 
-\item{yname}{character or espression giving label(s) for the y-axis}
+\item{yname}{character or expression giving label(s) for the y-axis}
 
 \item{Pct}{Pct controls if use the percentage value.}
 
@@ -57,7 +57,7 @@ tsPlotMP(
 Plot time series with specific plotting parameters
 }
 \examples{
-
+\dontrun{
 #Load the data
 data("stocks145scores6")
 dat = stocks145scores6
@@ -76,7 +76,8 @@ tsPlotMP(ret, color = 'Blue',main='test',zeroLine=FALSE,panel=function(...){
 			panel.abline(h = 0, lty = 3) 
 			panel.abline(h = 0.1, lty = 3)
 			panel.abline(h = -0.1, lty = 3)
-			panel.xyplot(...)})   
+			panel.xyplot(...)}) 
+}  
 }
 \author{
 Douglas Martin, Lingjie Yi

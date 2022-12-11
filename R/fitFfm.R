@@ -174,7 +174,8 @@
 #' \code{\link{paFm}} for Performance Attribution.
 #'
 #' @examples
-#'
+#'\dontrun{
+#' library(PCRA)
 #' # load data 
 #'data(stocksCRSP)
 #'data(factorsSPGMI)
@@ -212,7 +213,7 @@
 #'  summary(sector_model)
 #' 
 #'                
-#' 
+#' }
 #' @export
 fitFfm <- function(data, asset.var, ret.var, date.var, exposure.vars, 
                    weight.var = NULL, 

@@ -69,7 +69,7 @@ A list containing mean and standard deviation of all the factors
 Calculate k factor time series based on fundamental factor model. This method takes fundamental factor model fit, 'ffm' object, and portfolio weight as inputs and generates numeric summary and plot visualization.
 }
 \examples{
-
+\dontrun{
 #Load fundamental and return data 
 # Fundamental Factor Model
 data("stocks145scores6")
@@ -102,6 +102,7 @@ repExposures(fit.cross, wtsStocks145GmvLo, isPlot = TRUE, which = 1,
              
 repExposures(fit.cross, wtsStocks145GmvLo, isPrint = FALSE, isPlot = TRUE, 
              which = 3, add.grid = FALSE, zeroLine = FALSE, color = 'Blue')
+}
 }
 \author{
 Douglas Martin, Lingjie Yi, Avinash

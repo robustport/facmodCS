@@ -35,6 +35,7 @@
 #' @seealso \code{\link{fitFfm}}, \code{\link[stats]{summary.lm}}
 #' 
 #' @examples
+#' \dontrun{
 #' data("factorDataSetDjia5Yrs")
 #' 
 #' # fit a fundamental factor model
@@ -51,7 +52,7 @@
 #' 
 #' # summary of lm fit for a single period
 #' summary(fit$factor.fit[[1]])
-#' 
+#' }
 #' @method summary ffm
 #' @export
 
@@ -75,7 +76,6 @@ summary.ffm <- function(object, ...){
 #' @rdname summary.ffm
 #' @method print summary.ffm
 #' @export
-
 print.summary.ffm <- function(x, digits=3, labels=TRUE, ...) {
   n <- length(x$sum.list)
   if (labels==TRUE) {
