@@ -73,12 +73,6 @@ Used only when isPlot = 'TRUE'}
 
 \item{portfolio.only}{logical variable to choose if to calculate portfolio only decomposition, in which case multiple risk measures are 
 allowed.}
-
-\item{use}{an optional character string giving a method for computing factor
-covariances in the presence of missing values. This must be (an 
-abbreviation of) one of the strings "everything", "all.obs", 
-"complete.obs", "na.or.complete", or "pairwise.complete.obs". Default is 
-"pairwise.complete.obs".}
 }
 \value{
 A table containing 

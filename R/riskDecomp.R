@@ -17,11 +17,6 @@
 #' Default is "np".
 #' @param invert a logical variable to choose if change ES to positive number, default
 #' is False 
-#' @param use an optional character string giving a method for computing factor
-#' covariances in the presence of missing values. This must be (an 
-#' abbreviation of) one of the strings "everything", "all.obs", 
-#' "complete.obs", "na.or.complete", or "pairwise.complete.obs". Default is 
-#' "pairwise.complete.obs".
 #' @param ... other optional arguments passed to \code{\link[stats]{quantile}} and 
 #' optional arguments passed to \code{\link[stats]{cov}}
 #' 
@@ -72,7 +67,7 @@
 #' @importFrom zoo as.Date index 
 #' @importFrom graphics abline legend lines mtext panel.smooth rug
 #' @importFrom stats cor cov2cor density dnorm formula hatvalues lag pnorm printCoefmat 
-#' rnorm t.test time quantile residuals cov resid qnorm
+#' @importFrom stats rnorm t.test time quantile residuals cov resid qnorm
 #' @importFrom utils stack
 #' @export
 riskDecomp.ffm <- function(object, risk, weights = NULL, portDecomp =TRUE, factor.cov, p=0.05, type=c("np","normal"), 

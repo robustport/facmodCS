@@ -24,5 +24,5 @@ the returns to create residual return using regressions of returns on a
 benchmark.
 }
 \seealso{
-\code{\link{specFfm()}} for information on the definition of the specFfm object.
+{\code{\link{specFfm}}} for information on the definition of the specFfm object.
 }

@@ -489,3 +489,8 @@ plot.ffm <- function(x, which=NULL, f.sub=1:2, a.sub=1:6,
   par(ask=FALSE)
   par(las=0)
 }
+
+
+setMethod("plot", signature(x = "ffm"),
+          function(x, ...) plot.ffm(x,...)
+)

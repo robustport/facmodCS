@@ -263,8 +263,6 @@ And, the following extractor functions: \code{\link[stats]{coef}},
 \code{\link[stats]{fitted}}, \code{\link[stats]{residuals}},
 \code{\link{fmCov}}, \code{\link{fmSdDecomp}}, \code{\link{fmVaRDecomp}} 
 and \code{\link{fmEsDecomp}}.
-
-\code{\link{paFm}} for Performance Attribution.
 }
 \author{
 Sangeetha Srinivasan, Guy Yollin,  Yi-An Chen, Avinash Acharya and Chindhanai Uthaisaad

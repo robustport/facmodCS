@@ -18,28 +18,26 @@ Description: Linear cross-section factor model fitting with least-squares and
     object factorSPGMI.  The stocksCRSP and factorsSPGMI data are not covered by
     the GPL-2 license, are not provided as open source pf any king, and they are
     not to be redistributed in any form.
-License: GPL-2
+License: GPL-2 | file LICENSE
 Depends: 
-    R (>= 3.5)
+    R (>= 3.5),
+    	PCRA,
+	methods
 Imports:
     data.table,
     xts,
     zoo,
     PerformanceAnalytics,
-    sandwich,
     lattice,
     sn,
     tseries,
 	robustbase,
 	RobStatTM,
-	knitr,
-	PCRA
 Suggests:
     corrplot,
     lmtest,
     rugarch,
-    strucchange,
     HH
 URL: https://github.com/robustport/facmodCS
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
 Encoding: UTF-8

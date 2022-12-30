@@ -5,15 +5,15 @@
 #' 
 #' @details The default \code{summary} method for a fitted \code{lm} object 
 #' computes the standard errors and t-statistics under the assumption of 
-#' homoskedasticty.
+#' homoscedasticity.
 #' 
-#' Note: This gives a summary of the fited factor returns at each time period. 
-#' If \code{T} is large, you might prefer the more succint summary produced by 
+#' Note: This gives a summary of the fitted factor returns at each time period. 
+#' If \code{T} is large, you might prefer the more succinct summary produced by 
 #' \code{\link{print.ffm}}.
 #'  
 #' @param object an object of class \code{ffm} returned by \code{fitFfm}.
 #' @param x an object of class \code{summary.ffm}.
-#' @param digits number of significants digits to use when printing. 
+#' @param digits number of significant digits to use when printing. 
 #' Default is 3.
 #' @param labels option to print labels and legend in the summary. Default is 
 #' \code{TRUE}. When \code{FALSE}, only the coefficient matrx with standard 

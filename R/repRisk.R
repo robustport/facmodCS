@@ -34,11 +34,6 @@
 #' allowed.
 #' @param isPlot logical variable to generate plot or not.
 #' @param isPrint logical variable to print numeric output or not.
-#' @param use an optional character string giving a method for computing factor
-#' covariances in the presence of missing values. This must be (an 
-#' abbreviation of) one of the strings "everything", "all.obs", 
-#' "complete.obs", "na.or.complete", or "pairwise.complete.obs". Default is 
-#' "pairwise.complete.obs".
 #' @param ... other optional arguments passed to \code{\link[stats]{quantile}} and 
 #' optional arguments passed to \code{\link[stats]{cov}}
 #'
@@ -401,7 +396,7 @@ repRisk.ffm <- function(object, weights = NULL, risk = c("Sd", "VaR", "ES"),
       if(isPlot & !mul.port){
    
         # single portfolio with multiple risks
-        if(class(result) == "matrix")
+        if(is.matrix(result))
         {
           result = output[[1]]
           result.mat = result[,-1]

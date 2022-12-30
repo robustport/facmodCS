@@ -19,7 +19,7 @@
 #' @param exposure.vars vector; names of the variables containing the
 #' fundamental factor exposures.
 #' @param weight.var character; name of the variable containing the weights
-#' used when standarizing style factor exposures. Default is \code{NULL}. See
+#' used when standardizing style factor exposures. Default is \code{NULL}. See
 #' Details.
 #' @param addIntercept logical; If \code{TRUE}, intercept is added in
 #'  the exposure matrix. Default is \code{FALSE},
@@ -128,7 +128,7 @@ specFfm <- function(data, asset.var, ret.var, date.var, exposure.vars,
 #' @return specObj an ffm spec Object that has been lagged
 #' @details this function operates on the data inside the specObj and applies a lag to 
 #' it
-#' @seealso \code{\link{specFfm()}} for information on the definition of the specFfm object.
+#' @seealso \code{\link{specFfm}} for information on the definition of the specFfm object.
 #' @export
 #'
 lagExposures <- function(specObj){
@@ -176,7 +176,7 @@ lagExposures <- function(specObj){
 #' @details this function operates on the data inside the specObj and applies a 
 #' standardization to it.  The user can choose CrossSectional or timeSeries standardization
 #' 
-#' @seealso \code{\link{specFfm()}} for information on the definition of the specFfm object.
+#' @seealso \code{\link{specFfm}} for information on the definition of the specFfm object.
 #' @export
 #'
 standardizeExposures <- function(specObj, 
@@ -193,7 +193,7 @@ standardizeExposures <- function(specObj,
   weight.var <- specObj$weight.var
   dataDT <- data.table::copy(specObj$dataDT) # hard_copy
   # we did have a copy but do we really need a full  copy, reference should be oka here
-  if (class(specObj) != "ffmSpec") {
+  if (!inherits(specObj,"ffmSpec")) {
     stop("specObj must be class ffmSpec")
   }
   Std.Type = toupper(Std.Type[1])
@@ -267,7 +267,7 @@ standardizeExposures <- function(specObj,
 #' @details this function operates on the data inside the specObj and residualizes
 #' the returns to create residual return using regressions of returns on a 
 #' benchmark.
-#' @seealso \code{\link{specFfm()}} for information on the definition of the specFfm object.
+#' @seealso {\code{\link{specFfm}}} for information on the definition of the specFfm object.
 #' @importFrom xts is.xts
 #' 
 #' @export
@@ -346,7 +346,7 @@ residualizeReturns <- function(specObj, benchmark, rfRate, isBenchExcess = F ){
 #' @return an ffmSpec Object with the standardized returns added
 #' @details this function operates on the data inside the specObj and standardizes
 #' the returns to create scaled return.
-#' @seealso \code{\link{specFfm()}} for information on the definition of the specFfm object.
+#' @seealso \code{\link{specFfm}} for information on the definition of the specFfm object.
 #' @export
 standardizeReturns <- function(specObj, 
                                GARCH.params = list(omega = 0.09, 
@@ -437,7 +437,7 @@ standardizeReturns <- function(specObj,
 #' \item{R_matrix}{The K+1 by K restriction matrix where K is the number of categorical variables for each date.}
 #' @details this function operates on the data inside the specObj fits a fundamental factor
 #' model to the data 
-#' @seealso \code{\link{specFfm()}} for information on the definition of the specFfm object.
+#' @seealso \code{\link{specFfm}} for information on the definition of the specFfm object.
 #' @importFrom RobStatTM lmrobdetMM
 #' @importFrom stats complete.cases
 #' 

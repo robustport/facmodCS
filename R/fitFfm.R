@@ -1,3 +1,9 @@
+
+# package class -------------
+setClass("ffm")
+
+# --------------------
+
 #' @title Fit a fundamental factor model using cross-sectional regression
 #'
 #' @description Fit a fundamental (cross-sectional) factor model using ordinary
@@ -170,8 +176,6 @@
 #' \code{\link[stats]{fitted}}, \code{\link[stats]{residuals}},
 #' \code{\link{fmCov}}, \code{\link{fmSdDecomp}}, \code{\link{fmVaRDecomp}} 
 #' and \code{\link{fmEsDecomp}}.
-#' 
-#' \code{\link{paFm}} for Performance Attribution.
 #'
 #' @examples
 #'\dontrun{

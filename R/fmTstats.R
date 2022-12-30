@@ -50,7 +50,7 @@
 #' \item{tstats}{ an xts object of t-stats values.}
 #' \item{z.alpha}{ critical value corresponding to the confidence interval.}
 #' 
-#' @examples{
+#' @examples
 #' \dontrun{
 #' data("factorDataSetDjia5Yrs")
 #'  

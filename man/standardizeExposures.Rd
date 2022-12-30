@@ -31,5 +31,5 @@ this function operates on the data inside the specObj and applies a
 standardization to it.  The user can choose CrossSectional or timeSeries standardization
 }
 \seealso{
-\code{\link{specFfm()}} for information on the definition of the specFfm object.
+\code{\link{specFfm}} for information on the definition of the specFfm object.
 }

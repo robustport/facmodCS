@@ -64,5 +64,5 @@ this function operates on the data inside the specObj fits a fundamental factor
 model to the data
 }
 \seealso{
-\code{\link{specFfm()}} for information on the definition of the specFfm object.
+\code{\link{specFfm}} for information on the definition of the specFfm object.
 }

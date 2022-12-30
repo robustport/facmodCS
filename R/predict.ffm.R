@@ -70,3 +70,8 @@ predict.ffm <- function(object, newdata=NULL, pred.date=NULL, ...){
     }
   }
 }
+
+
+setMethod("predict", signature(object = "ffm"),
+          function(object, ...) predict.ffm(object,...)
+)

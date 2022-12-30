@@ -31,7 +31,7 @@ coercible to class \code{Date}.}
 fundamental factor exposures.}
 
 \item{weight.var}{character; name of the variable containing the weights
-used when standarizing style factor exposures. Default is \code{NULL}. See
+used when standardizing style factor exposures. Default is \code{NULL}. See
 Details.}
 
 \item{addIntercept}{logical; If \code{TRUE}, intercept is added in

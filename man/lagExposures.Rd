@@ -21,5 +21,5 @@ this function operates on the data inside the specObj and applies a lag to
 it
 }
 \seealso{
-\code{\link{specFfm()}} for information on the definition of the specFfm object.
+\code{\link{specFfm}} for information on the definition of the specFfm object.
 }
