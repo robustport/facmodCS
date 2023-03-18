@@ -21,18 +21,18 @@ Description: Linear cross-section factor model fitting with least-squares and
 License: GPL-2 | file LICENSE
 Depends: 
     R (>= 3.5),
-    	PCRA,
-	methods
+	  methods
 Imports:
     data.table,
     xts,
     zoo,
     PerformanceAnalytics,
     lattice,
+    PCRA,
     sn,
     tseries,
-	robustbase,
-	RobStatTM,
+	  robustbase,
+	  RobStatTM,
 Suggests:
     corrplot,
     lmtest,
