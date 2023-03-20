@@ -97,7 +97,7 @@ portEsDecomp(fit.cross, weights = wtsStocks145GmvLo)
 }
 }
 \seealso{
-\code{\link{fitTsfm}}, \code{\link{fitFfm}}
+\code{\link{fitFfm}}
 for the different factor model fitting functions.
 
 \code{\link{portSdDecomp}} for factor model Sd decomposition.

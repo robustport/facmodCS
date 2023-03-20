@@ -46,7 +46,7 @@
 #' 
 #' @author Douglas Martin, Lingjie Yi
 #' 
-#' @seealso \code{\link{fitTsfm}}, \code{\link{fitFfm}}
+#' @seealso \code{\link{fitFfm}}
 #' for the different factor model fitting functions.
 #' 
 #' \code{\link{portSdDecomp}} for factor model Sd decomposition.

@@ -195,6 +195,15 @@ repRisk.ffm <- function(object, weights = NULL, risk = c("Sd", "VaR", "ES"),
     
     if(!portfolio.only){
       if(length(which(risk == "Sd"))){
+        
+        riskDecomp <- function(object, ...){
+          # check input object validity
+          if (!inherits(object, c("tsfm", "ffm"))) {
+            stop("Invalid argument: Object should be of class 'tsfm', or 'ffm'.")
+          }
+          UseMethod("riskDecomp")
+        }
+        
         port.Sd = riskDecomp(object,risk = "Sd",weights = weights, ... )
         asset.Sd = riskDecomp(object,risk = "Sd", portDecomp =FALSE, ... )
         

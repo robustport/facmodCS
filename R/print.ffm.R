@@ -16,11 +16,12 @@
 #' @author Yi-An Chen and Sangeetha Srinivasan
 #' 
 #' @seealso \code{\link{fitFfm}}, \code{\link{summary.ffm}}
-#' 
+#' @importFrom methods setMethod
 #' @examples
+
+#' \dontrun{
 #' library(PCRA)
 #' data(stocksCRSP)
-#' \dontrun{
 #' data("factorDataSetDjia5Yrs")
 #' # fit a fundamental factor model
 #' fit.style.sector <- fitFfm(data=factorDataSetDjia5Yrs, 
