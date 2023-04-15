@@ -195,17 +195,17 @@ repRisk.ffm <- function(object, weights = NULL, risk = c("Sd", "VaR", "ES"),
     
     if(!portfolio.only){
       if(length(which(risk == "Sd"))){
+        # 
+        # riskDecomp <- function(object, ...){
+        #   # check input object validity
+        #   if (!inherits(object, c("tsfm", "ffm"))) {
+        #     stop("Invalid argument: Object should be of class 'tsfm', or 'ffm'.")
+        #   }
+        #   UseMethod("riskDecomp")
+        # }
         
-        riskDecomp <- function(object, ...){
-          # check input object validity
-          if (!inherits(object, c("tsfm", "ffm"))) {
-            stop("Invalid argument: Object should be of class 'tsfm', or 'ffm'.")
-          }
-          UseMethod("riskDecomp")
-        }
-        
-        port.Sd = riskDecomp(object,risk = "Sd",weights = weights, ... )
-        asset.Sd = riskDecomp(object,risk = "Sd", portDecomp =FALSE, ... )
+        port.Sd = riskDecomp.ffm(object,risk = "Sd",weights = weights, ... )
+        asset.Sd = riskDecomp.ffm(object,risk = "Sd", portDecomp =FALSE, ... )
         
         if(decomp == "FMCR"){
           port = port.Sd$mSd
@@ -232,8 +232,8 @@ repRisk.ffm <- function(object, weights = NULL, risk = c("Sd", "VaR", "ES"),
         }
         
       } else if(length(which(risk == "VaR"))){
-        port.VaR = riskDecomp(object, risk = "VaR", weights = weights, p = p, type = type, invert = invert, ... )
-        asset.VaR = riskDecomp(object,risk = "VaR", portDecomp =FALSE,  p = p, type = type, invert = invert, ... )
+        port.VaR = riskDecomp.ffm(object, risk = "VaR", weights = weights, p = p, type = type, invert = invert, ... )
+        asset.VaR = riskDecomp.ffm(object,risk = "VaR", portDecomp =FALSE,  p = p, type = type, invert = invert, ... )
         
         if(decomp == "FMCR"){
           port = port.VaR$mVaR
@@ -260,8 +260,8 @@ repRisk.ffm <- function(object, weights = NULL, risk = c("Sd", "VaR", "ES"),
         }
         
       } else if(length(which(risk == "ES"))){
-        port.Es = riskDecomp(object, risk = "ES", weights = weights, p = p, type = type, invert = invert, ... )
-        asset.Es = riskDecomp(object,risk = "ES", portDecomp =FALSE, p = p, type = type, invert = invert, ... )
+        port.Es = riskDecomp.ffm(object, risk = "ES", weights = weights, p = p, type = type, invert = invert, ... )
+        asset.Es = riskDecomp.ffm(object,risk = "ES", portDecomp =FALSE, p = p, type = type, invert = invert, ... )
         
         if(decomp == "FMCR"){
           port = port.Es$mES
@@ -346,9 +346,9 @@ repRisk.ffm <- function(object, weights = NULL, risk = c("Sd", "VaR", "ES"),
         return(output)
       }
     } else{
-      port.Sd = riskDecomp(object, risk = "Sd", weights = weights, ... )
-      port.VaR = riskDecomp(object, risk ="VaR", weights = weights, p = p, type = type, invert = invert, ... )
-      port.Es = riskDecomp(object,risk ="ES", weights = weights, p = p, type = type, invert = invert, ... )
+      port.Sd = riskDecomp.ffm(object, risk = "Sd", weights = weights, ... )
+      port.VaR = riskDecomp.ffm(object, risk ="VaR", weights = weights, p = p, type = type, invert = invert, ... )
+      port.Es = riskDecomp.ffm(object,risk ="ES", weights = weights, p = p, type = type, invert = invert, ... )
       
       if(decomp == "FMCR"){
         Sd = port.Sd$mSd
