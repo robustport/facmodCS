@@ -21,7 +21,7 @@ Default is \code{"none"}.}
 variances. Default is 0.9}
 }
 \value{
-the ffM spec object with exposures z-scored
+the ffmSpec object with exposures z-scored
 }
 \description{
 function to calculate z-scores for numeric exposure using weights weight.var

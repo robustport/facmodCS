@@ -37,6 +37,9 @@ roll.fitFfmDT(
 
 \item{analysis}{choice of "ISM" or "NEW"}
 }
+\value{
+a list object containing a list of objects describing the fitted analysis.
+}
 \description{
 roll.fitFfmDT rolls the fundamental factor model
 }

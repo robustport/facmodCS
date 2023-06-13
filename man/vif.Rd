@@ -7,8 +7,8 @@
 vif(
   ffmObj,
   digits = 2,
-  isPrint = T,
-  isPlot = T,
+  isPrint = TRUE,
+  isPlot = TRUE,
   lwd = 2,
   stripText.cex = 1,
   axis.cex = 1,

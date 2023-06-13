@@ -15,6 +15,9 @@
 
 \item{...}{additional arguments}
 }
+\value{
+returns an object of class ffm
+}
 \description{
 Function to convert to current class # mido to change to retroFit
 }

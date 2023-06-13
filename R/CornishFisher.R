@@ -43,7 +43,6 @@
 #' Press.
 #'  
 #' @examples
-#' \dontrun{
 #' # generate 1000 observation from Cornish-Fisher distribution
 #' rc <- rCornishFisher(1000,1,0,5)
 #' hist(rc, breaks=100, freq=FALSE, 
@@ -61,7 +60,6 @@
 #' pnorm(q)
 #' # use edgeworth expansion
 #' pCornishFisher(q, n=5, skew=2, ekurt=6)
-#' }
 #'
 #' @rdname CornishFisher
 #' @export

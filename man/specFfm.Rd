@@ -41,6 +41,9 @@ the exposure matrix. Default is \code{FALSE},}
 correlation, location and univariate scale are computed as appropriate (see
 Details). Default is \code{FALSE}.}
 }
+\value{
+an object of class ffmSpec holding the details of the analysis
+}
 \description{
 Factor models have a few parameters that describe how the 
 fitting is done.  This function summarizes them and returns a spec object for

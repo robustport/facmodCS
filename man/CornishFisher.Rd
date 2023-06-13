@@ -58,7 +58,6 @@ kurtosis.
 expansion given mean, standard deviation, skewness and excess kurtosis.
 }
 \examples{
-\dontrun{
 # generate 1000 observation from Cornish-Fisher distribution
 rc <- rCornishFisher(1000,1,0,5)
 hist(rc, breaks=100, freq=FALSE, 
@@ -76,7 +75,6 @@ pgamma(q/sqrt(5)+1, shape=5, scale=1/5)
 pnorm(q)
 # use edgeworth expansion
 pCornishFisher(q, n=5, skew=2, ekurt=6)
-}
 
 }
 \references{

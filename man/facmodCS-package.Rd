@@ -6,12 +6,28 @@
 \alias{facmodCS-package}
 \title{facmodCS: Cross-Section Factor Models}
 \description{
-Linear cross-section factor model fitting with least-squares and and robust fitting the lmrobdetMM() function from RobStatTM; related volatility, VaR and ES risk and performance attribution (factor-contributed vs idiosyncratic returns); tabular displays of risk and performance reports; factor model Monte Carlo. The package authors would like to thank Chicago Research on Security Prices,LLC (CRSP) for the cross-section of about 300 CRSP stocks data (in the data.table object stocksCRSP, and S&P GLOBAL MARKET INTELLIGENCE for contributing 14 factor scores (a.k.a "alpha factors".and "factor exposures") fundamental data on the 300 companies in the data.table object factorSPGMI. The stocksCRSP and factorsSPGMI data are not covered by the GPL-2 license, are not provided as open source pf any king, and they are not to be redistributed in any form.
+Linear cross-section factor model fitting with least-squares and robust fitting the 'lmrobdetMM()' function from 'RobStatTM'; related volatility, Value at Risk and Expected Shortfall risk and performance attribution (factor-contributed vs idiosyncratic returns); tabular displays of risk and performance reports; factor model Monte Carlo. The package authors would like to thank Chicago Research on Security Prices,LLC for the cross-section of about 300 CRSP stocks data (in the data.table object 'stocksCRSP', and S&P GLOBAL MARKET INTELLIGENCE for contributing 14 factor scores (a.k.a "alpha factors".and "factor exposures") fundamental data on the 300 companies in the data.table object 'factorSPGMI'. The 'stocksCRSP' and 'factorsSPGMI' data are not covered by the GPL-2 license, are not provided as open source of any kind, and they are not to be redistributed in any form.
 }
 \seealso{
 Useful links:
 \itemize{
   \item \url{https://github.com/robustport/facmodCS}
+}
+
+}
+\author{
+\strong{Maintainer}: Mido Shammaa \email{midoshammaa@yahoo.com}
+
+Authors:
+\itemize{
+  \item Doug Martin \email{martinrd3d@gmail.com} [contributor]
+  \item Kirk Li \email{cocokecoli@gmail.com} [contributor]
+}
+
+Other contributors:
+\itemize{
+  \item Avinash Acharya \email{Jon.Spinney@vestcor.org} [contributor]
+  \item Lingjie Yi \email{lingjy.uw@gmail.com} [contributor]
 }
 
 }

@@ -6,12 +6,12 @@
 \usage{
 fmRsq(
   ffmObj,
-  rsq = T,
-  rsqAdj = F,
+  rsq = TRUE,
+  rsqAdj = FALSE,
   plt.type = 2,
   digits = 2,
-  isPrint = T,
-  isPlot = T,
+  isPrint = TRUE,
+  isPlot = TRUE,
   lwd = 2,
   stripText.cex = 1,
   axis.cex = 1,

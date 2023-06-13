@@ -88,6 +88,9 @@ in \code{plot}. Default is 1.}
 
 \item{...}{further arguments to be passed to other plotting functions.}
 }
+\value{
+Does not return a value, used for plotting
+}
 \description{
 Generic \code{plot} method for object of class \code{ffm}.
 Plots chosen characteristic(s) for one or more assets.

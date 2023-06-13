@@ -4,7 +4,7 @@
 \alias{residualizeReturns}
 \title{residualizeReturns}
 \usage{
-residualizeReturns(specObj, benchmark, rfRate, isBenchExcess = F)
+residualizeReturns(specObj, benchmark, rfRate, isBenchExcess = FALSE)
 }
 \arguments{
 \item{specObj}{specObj is a ffmSpec object,}
@@ -14,6 +14,9 @@ residualizeReturns(specObj, benchmark, rfRate, isBenchExcess = F)
 \item{rfRate}{risk free rate}
 
 \item{isBenchExcess}{toggle to select whether to calculate excess returns}
+}
+\value{
+the ffmSpec object with resturns residualized
 }
 \description{
 #' function to Residualize the returns via regressions

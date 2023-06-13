@@ -77,6 +77,9 @@ summary.ffm <- function(object, ...){
 #' @method print summary.ffm
 #' @export
 print.summary.ffm <- function(x, digits=3, labels=TRUE, ...) {
+  
+  old <- options() # code line i
+  on.exit(options(old)) # code line i + 1
   n <- length(x$sum.list)
   if (labels==TRUE) {
     if(!is.null(cl <- x$call)) {

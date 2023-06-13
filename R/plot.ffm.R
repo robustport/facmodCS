@@ -151,6 +151,7 @@
 #' plot(fit.style, plot.single = TRUE, asset.name = "ALCO", which = 12)
 #' }
 #' @method plot ffm
+#' @return Does not return a value, used for plotting
 #' @export
 
 plot.ffm <- function(x, which=NULL, f.sub=1:2, a.sub=1:6,
@@ -211,6 +212,8 @@ plot.ffm <- function(x, which=NULL, f.sub=1:2, a.sub=1:6,
                  "QQ-plot of residuals"),
                title="\nMake a plot selection (or 0 to exit):")
       }
+      oldpar <- par(no.readonly = TRUE) 
+      on.exit(par(oldpar)) 
       
       par(las=las) # default horizontal axis labels
       

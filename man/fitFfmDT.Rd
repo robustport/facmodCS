@@ -45,7 +45,7 @@ RobStatTM package. See \code{\link[RobStatTM]{lmrobdetMM}}.}
 \code{fitFfm} returns a list with two object of class \code{"data.table"}
 The first reg.listDT is object of class \code{"data.table"} is a list containing the following
 components:
-\item{DATE}{length-T vector of dates.}
+\item{DATE}{length-Time vector of dates.}
 \item{id}{length-N vector of asset id's for each date.}
 \item{reg.list}{list of fitted objects that estimate factor returns in each
 time period. Each fitted object is of class \code{lm} if
@@ -53,7 +53,7 @@ time period. Each fitted object is of class \code{lm} if
 \code{fit.method="Rob" or "W-Rob"}.}
 The second betasDT is object of class \code{"data.table"} is a list containing the following
 components:
-\item{DATE}{length-T vector of dates.}
+\item{DATE}{length-Time vector of dates.}
 \item{R_matrix}{The K+1 by K restriction matrix where K is the number of categorical variables for each date.}
 }
 \description{

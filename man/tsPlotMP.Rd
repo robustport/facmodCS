@@ -10,7 +10,7 @@ tsPlotMP(
   layout = NULL,
   type = "l",
   yname = "RETURNS (\%)",
-  Pct = F,
+  Pct = FALSE,
   scaleType = "free",
   stripLeft = TRUE,
   main = NULL,
@@ -52,6 +52,9 @@ tsPlotMP(
 \item{zeroLine}{logical varible to choose add a dotted horizontal line at the zero vertical distance}
 
 \item{panel}{function to add customized lines to the lattice plot. See examples.}
+}
+\value{
+{No return value, called for plotting}
 }
 \description{
 Plot time series with specific plotting parameters

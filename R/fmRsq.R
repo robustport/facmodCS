@@ -55,7 +55,7 @@
 #' 
 #' @export
 #' 
-fmRsq <- function(ffmObj, rsq=T, rsqAdj=F,plt.type= 2, digits=2, isPrint=T, isPlot =T, lwd =2,stripText.cex =1,axis.cex=1, title = TRUE, ...)
+fmRsq <- function(ffmObj, rsq=TRUE, rsqAdj=FALSE,plt.type= 2, digits=2, isPrint=TRUE, isPlot =TRUE, lwd =2,stripText.cex =1,axis.cex=1, title = TRUE, ...)
 {
   # set defaults and check input validity
   if (!inherits(ffmObj, "ffm"))
@@ -94,7 +94,7 @@ fmRsq <- function(ffmObj, rsq=T, rsqAdj=F,plt.type= 2, digits=2, isPrint=T, isPl
           panel.abline(h=0,lty = 3)
           panel.xyplot(...)}
         plt = xyplot(r2.xts,col = "blue",lwd =lwd, panel =panel, scale = list(y = list(cex=axis.cex,rot =0),x = list(cex =axis.cex)),par.strip.text = list(cex = stripText.cex),
-                     main = title.Rsq, type = "h", ylim = c(0,(max(r2.xts)+0.05)), strip.left = strip.custom(var.name = "Rsq", style = 1, strip.names = T,strip.levels=F ))
+                     main = title.Rsq, type = "h", ylim = c(0,(max(r2.xts)+0.05)), strip.left = strip.custom(var.name = "Rsq", style = 1, strip.names = TRUE,strip.levels=FALSE ))
         print(plt) 
         
       }
@@ -127,7 +127,7 @@ fmRsq <- function(ffmObj, rsq=T, rsqAdj=F,plt.type= 2, digits=2, isPrint=T, isPl
         panel.xyplot(...)}
       plt = xyplot(adj.r2.xts,col = "blue", lwd =lwd, main = title.AdjRsq, type = "h",panel = panel,
                    scales = list(y = list(cex = axis.cex,relation="same"),x = list(cex =axis.cex)),par.strip.text = list(cex = stripText.cex),
-                   strip.left = strip.custom(var.name = "AdjRsq", style = 1, strip.names = T,strip.levels=F ))
+                   strip.left = strip.custom(var.name = "AdjRsq", style = 1, strip.names = TRUE,strip.levels=FALSE ))
       print(plt) 
     }
     adj.r2.mean<- round(mean(adj.r2),digits = digits)
@@ -149,7 +149,7 @@ fmRsq <- function(ffmObj, rsq=T, rsqAdj=F,plt.type= 2, digits=2, isPrint=T, isPl
       #                color = "blue", yname = "", lwd = lwd, main = title.comb, type = "h", cex = 1.2)
       plt = xyplot(r2.combined,col = "blue", lwd =lwd, main = title.comb, type = "h",panel = panel,
                    scales = list(y = list(cex = axis.cex,relation="same"),x = list(cex =axis.cex)),par.strip.text = list(cex = stripText.cex),
-                   strip.left = T, strip = F)
+                   strip.left = TRUE, strip = FALSE)
       print(plt) 
       
     }

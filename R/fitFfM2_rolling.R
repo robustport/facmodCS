@@ -12,6 +12,7 @@
 #' @param full.resid.cov True or False toggle
 #' @param analysis choice of "ISM" or "NEW"
 #' 
+#' @return a list object containing a list of objects describing the fitted analysis.
 #' @export
 roll.fitFfmDT <- function(ffMSpecObj, 
                           windowSize = 60, 

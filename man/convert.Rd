@@ -15,6 +15,9 @@ convert(SpecObj, FitObj, RegStatsObj, ...)
 
 \item{...}{additional arguments}
 }
+\value{
+returns an object of class ffm
+}
 \description{
 function to convert the new ffm spec object to ffm object to make it
 easier in plotting and reporting

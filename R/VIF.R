@@ -40,7 +40,7 @@
 #'  vif(fit,isPrint=TRUE)
 #'  }
 #' @export
-vif <- function(ffmObj, digits=2, isPrint=T, isPlot =T, lwd =2,stripText.cex =1,axis.cex=1, title = TRUE, ...)
+vif <- function(ffmObj, digits=2, isPrint=TRUE, isPlot =TRUE, lwd =2,stripText.cex =1,axis.cex=1, title = TRUE, ...)
 { 
   # check input object validity
   if (!inherits(ffmObj, c("tsfm", "sfm", "ffm"))) 

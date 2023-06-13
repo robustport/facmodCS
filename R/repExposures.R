@@ -79,7 +79,8 @@ repExposures <- function(ffmObj, weights = NULL, isPlot = TRUE, isPrint = TRUE, 
   if (!inherits(ffmObj, "ffm")) {
     stop("Invalid argument: ffmObj should be of class'ffm'.")
   }
-  
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar)) 
   which.numeric <- sapply(ffmObj$data[,ffmObj$exposure.vars,drop=FALSE], is.numeric)
   exposures.num <- ffmObj$exposure.vars[which.numeric]
   exposures.char <- ffmObj$exposure.vars[!which.numeric]

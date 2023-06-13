@@ -43,12 +43,12 @@
 #' 			panel.abline(h = -0.1, lty = 3)
 #' 			panel.xyplot(...)}) 
 #' }  
+#' @return {No return value, called for plotting}
 #' @export
-
 # Lattice type time series plotting function
 
 tsPlotMP = function (ret, add.grid = FALSE, layout = NULL, type = "l", yname = "RETURNS (%)", 
-		Pct = F, scaleType = "free", stripLeft = TRUE, main = NULL, lwd = 1, 
+		Pct = FALSE, scaleType = "free", stripLeft = TRUE, main = NULL, lwd = 1, 
 		stripText.cex = 1, axis.cex = 1, color = "black", zeroLine = TRUE, panel = NULL) 
 {
 	strip.left = stripLeft
