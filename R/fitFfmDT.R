@@ -28,33 +28,28 @@
 #' Details). Default is \code{FALSE}.
 #' 
 #' @return an object of class ffmSpec holding the details of the analysis
-#' @example 
+#' @examples
+#' \donttest{
 #' library(PCRA)
-#' library(data.table)
-#' library(xts)
 #' 
 #' dateRange <- c("2006-01-31","2010-12-31")
-#' stockItems <-  c("Date", "TickerLast", "CapGroupLast", "Return",
-#'                  "Ret13WkBill","MktIndexCRSP","Sector")
+#' stockItems <-  c("Date", "TickerLast",  "Return","Sector")
 #' factorItems <- c("BP","Beta60M","PM12M1M")
-#' 
 #' facDatIT <- selectCRSPandSPGMI("monthly",
 #'                                dateRange = dateRange, 
 #'                                stockItems = stockItems, 
 #'                                factorItems = factorItems, 
-#'                                subsetType = "Sector",
-#'                                subsetValues = "Information Technology", 
 #'                                outputType = "data.table")
 #' asset.var="TickerLast" 
 #' ret.var="Return" 
 #' date.var = "Date"
-#' exposure.vars= c("BP","Beta60M","PM12M1M","CapGroupLast")
+#' exposure.vars= c("BP","Beta60M","PM12M1M")
 #' spec1 <- specFfm(data = facDatIT,asset.var = asset.var, ret.var = ret.var, 
 #'                  date.var = date.var, exposure.vars = exposure.vars,weight.var = NULL,
 #'                  addIntercept = TRUE, rob.stats = FALSE)
 #' spec1$exposure.vars
 #' 
-#' lag the exposures
+#' #lag the exposures
 #' spec1 <- lagExposures(spec1)
 #' # standardize the exposures Cross-Sectionally
 #' spec1 <- standardizeExposures(spec1, Std.Type = "CrossSection") 
@@ -62,6 +57,7 @@
 #' mdlFit <- fitFfmDT(spec1) 
 #' class(mdlFit)
 #' class(mdlFit$reg.listDT)
+#' }
 #' @export
 #'
 specFfm <- function(data, asset.var, ret.var, date.var, exposure.vars, 
@@ -1146,6 +1142,10 @@ calcFLAM <- function(specObj, modelStats, fitResults, analysis = c("ISM", "NEW")
   
 }
 
+
+
+
+ 
 # private functions ----
 #' @importFrom robustbase scaleTau2 covOGK
 #' @importFrom data.table := set .SD 

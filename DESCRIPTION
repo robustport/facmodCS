@@ -42,6 +42,7 @@ Imports:
 	robustbase,
 	RobStatTM,
 Suggests:
+    PCRA,
     corrplot,
     lmtest,
     rugarch,

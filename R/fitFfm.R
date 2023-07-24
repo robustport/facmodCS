@@ -178,21 +178,18 @@ setClass("ffm")
 #' and \code{\link{fmEsDecomp}}.
 #'
 #' @examples
-#'\dontrun{
+#'\donttest{
 #' library(PCRA)
 #' # load data 
 #'data(stocksCRSP)
 #'data(factorsSPGMI)
-#'
-#'stocks_factors <- selectCRSPandSPGMI(stocks = stocksCRSP, factors = factorsSPGMI,
-#'                                     dateSet = c("2006-01-31", "2010-12-31"), 
-#'                                     stockItems = c("Date", "TickerLast", 
-#'                                                    "CapGroup", "Sector", 
-#'                                                    "Return", "Ret13WkBill",
-#'                                                    "mktIndexCRSP"),
-#'                                     factorItems = c("BP", "LogMktCap", "SEV"), 
-#'                                     capChoice = "SmallCap",
-#'                                     Nstocks = 20)
+#'dateRange <- c("2006-01-31","2010-12-31")
+#'stockItems <-  c("Date", "TickerLast", "CapGroupLast", "Return",
+#'                 "Ret13WkBill","MktIndexCRSP","Sector")
+#'                 factorItems <- c("BP","Beta60M","PM12M1M")
+#'stocks_factors <- selectCRSPandSPGMI("monthly", dateRange = dateRange, 
+#'stockItems = stockItems, factorItems = factorItems, outputType ="data.table")
+#'                                     
 #' 
 #' # fit a fundamental factor model with style variables BP and LogMktCap
 #' 
@@ -200,7 +197,7 @@ setClass("ffm")
 #'                            asset.var = "TickerLast", 
 #'                            ret.var = "Return", 
 #'                            date.var = "Date", 
-#'                            exposure.vars = c("BP", "LogMktCap")
+#'                            exposure.vars = c("BP", "PM12M1M")
 #'                            )
 #' 
 #'   summary(fundamental_model)

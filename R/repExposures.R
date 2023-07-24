@@ -36,41 +36,9 @@
 #' A list containing mean and standard deviation of all the factors
 #' 
 #' @author Douglas Martin, Lingjie Yi, Avinash
-#' @examples 
-#'\dontrun{
-#' #Load fundamental and return data 
-#' # Fundamental Factor Model
-#' data("stocks145scores6")
-#' dat = stocks145scores6
-#' dat$DATE = zoo::as.yearmon(dat$DATE)
-#' dat = dat[dat$DATE >=zoo::as.yearmon("2008-01-01") & dat$DATE <= zoo::as.yearmon("2012-12-31"),]
-#'
-#'
-#' #Load long-only GMV weights for the return data
-#' data("wtsStocks145GmvLo")
-#' wtsStocks145GmvLo = round(wtsStocks145GmvLo,5)  
+#' @example
+#' args(repExposures)
 #' 
-#' # fit a fundamental factor model
-#' exposure.vars = c("SECTOR","ROE","BP","PM12M1M","SIZE", "ANNVOL1M", "EP")
-#' fit.cross <- fitFfm(data = dat, 
-#'                     exposure.vars = exposure.vars,
-#'                     date.var = "DATE", 
-#'                     ret.var = "RETURN", 
-#'                     asset.var = "TICKER", 
-#'                     fit.method="WLS", 
-#'                     z.score = "crossSection")
-#'
-#' repExposures(fit.cross, wtsStocks145GmvLo, isPlot = FALSE, digits = 4)
-#' 
-#' repExposures(fit.cross, wtsStocks145GmvLo, isPrint = FALSE, isPlot = TRUE, 
-#'              which = 2, add.grid = TRUE, scaleType = 'same')
-#'              
-#' repExposures(fit.cross, wtsStocks145GmvLo, isPlot = TRUE, which = 1,
-#'              add.grid = FALSE, zeroLine = TRUE, color = 'Blue')
-#'              
-#' repExposures(fit.cross, wtsStocks145GmvLo, isPrint = FALSE, isPlot = TRUE, 
-#'              which = 3, add.grid = FALSE, zeroLine = FALSE, color = 'Blue')
-#' }
 #' @export
 repExposures <- function(ffmObj, weights = NULL, isPlot = TRUE, isPrint = TRUE, scaleType = 'free',
                          stripText.cex =1,axis.cex=1,stripLeft = TRUE, layout = NULL, color = "blue",notch = FALSE, digits = 1, titleText = TRUE, 
@@ -79,8 +47,6 @@ repExposures <- function(ffmObj, weights = NULL, isPlot = TRUE, isPrint = TRUE, 
   if (!inherits(ffmObj, "ffm")) {
     stop("Invalid argument: ffmObj should be of class'ffm'.")
   }
-  oldpar <- par(no.readonly = TRUE)
-  on.exit(par(oldpar)) 
   which.numeric <- sapply(ffmObj$data[,ffmObj$exposure.vars,drop=FALSE], is.numeric)
   exposures.num <- ffmObj$exposure.vars[which.numeric]
   exposures.char <- ffmObj$exposure.vars[!which.numeric]
@@ -147,6 +113,8 @@ repExposures <- function(ffmObj, weights = NULL, isPlot = TRUE, isPrint = TRUE, 
   X = xts::as.xts(X[,-1],order.by = X[,1])
   
   if(isPlot){
+    oldpar <- par(no.readonly = TRUE)
+    on.exit(par(oldpar)) 
     par(mfrow = c(1,1))
     
     which.vec <- which

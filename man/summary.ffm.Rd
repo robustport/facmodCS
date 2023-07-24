@@ -47,26 +47,6 @@ Note: This gives a summary of the fitted factor returns at each time period.
 If \code{T} is large, you might prefer the more succinct summary produced by 
 \code{\link{print.ffm}}.
 }
-\examples{
-\dontrun{
-data("factorDataSetDjia5Yrs")
-
-# fit a fundamental factor model
-fit <- fitFfm(data = factorDataSetDjia5Yrs, 
-              asset.var = "TICKER", 
-              ret.var = "RETURN", 
-              date.var = "DATE", 
-              exposure.vars = c("P2B", "MKTCAP"))
-              
-names(fit)
-
-# summary of factor returns estimated in each time period
-summary(fit)
-
-# summary of lm fit for a single period
-summary(fit$factor.fit[[1]])
-}
-}
 \seealso{
 \code{\link{fitFfm}}, \code{\link[stats]{summary.lm}}
 }

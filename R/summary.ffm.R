@@ -34,25 +34,6 @@
 #' 
 #' @seealso \code{\link{fitFfm}}, \code{\link[stats]{summary.lm}}
 #' 
-#' @examples
-#' \dontrun{
-#' data("factorDataSetDjia5Yrs")
-#' 
-#' # fit a fundamental factor model
-#' fit <- fitFfm(data = factorDataSetDjia5Yrs, 
-#'               asset.var = "TICKER", 
-#'               ret.var = "RETURN", 
-#'               date.var = "DATE", 
-#'               exposure.vars = c("P2B", "MKTCAP"))
-#'               
-#' names(fit)
-#' 
-#' # summary of factor returns estimated in each time period
-#' summary(fit)
-#' 
-#' # summary of lm fit for a single period
-#' summary(fit$factor.fit[[1]])
-#' }
 #' @method summary ffm
 #' @export
 

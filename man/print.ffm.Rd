@@ -14,6 +14,9 @@ significant digits. Default is 3.}
 
 \item{...}{optional arguments passed to the \code{print} method.}
 }
+\value{
+Returns an object of class \code{print.ffm}.
+}
 \description{
 S3 \code{print} method for object of class \code{ffm}. Prints 
 the call, factor model dimension and summary statistics for the estimated

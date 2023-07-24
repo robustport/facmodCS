@@ -78,7 +78,6 @@
 #'                                    boot.method = "block")
 #' }
 #' @export
-
 fmmcSemiParam <- function (B=1000, factor.ret, beta, alpha, resid.par, 
                            resid.dist=c("normal","Cornish-Fisher","skew-t", "empirical"), 
                            boot.method=c("random","block"), seed=123) {

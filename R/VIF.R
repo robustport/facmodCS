@@ -27,17 +27,30 @@
 #'                         The time series of the output values are also printed if \code{isPrint} is \code{TRUE} 
 #'
 #' @examples
-#'\dontrun{
-#' #Load the data
-#'  data("factorDataSetDjia5Yrs")
-#'
-#' #Fit a Ffm
-#' require(FactorAnalytics)
-#'  fit <- fitFfm(data=factorDataSetDjia5Yrs, asset.var="TICKER", ret.var="RETURN",
-#'               date.var="DATE", exposure.vars=c("SECTOR", "P2B", "EV2S", "MKTCAP"))
-#'
+#'\donttest{
+#' library(PCRA)
+#' # load data 
+#'data(stocksCRSP)
+#'data(factorsSPGMI)
+#'dateRange <- c("2006-01-31","2010-12-31")
+#'stockItems <-  c("Date", "TickerLast", "CapGroupLast", "Return",
+#'                 "Ret13WkBill","MktIndexCRSP","Sector")
+#'                 factorItems <- c("BP","Beta60M","PM12M1M")
+#'stocks_factors <- selectCRSPandSPGMI("monthly", dateRange = dateRange, 
+#'stockItems = stockItems, factorItems = factorItems, outputType ="data.table")
+#'                                     
+#' 
+#' # fit a fundamental factor model with style variables BP and LogMktCap
+#' 
+#'fundamental_model <- fitFfm(data = stocks_factors, 
+#'                            asset.var = "TickerLast", 
+#'                            ret.var = "Return", 
+#'                            date.var = "Date", 
+#'                            exposure.vars = c("BP", "PM12M1M")
+#'                            )
+#' 
 #' #Plot and print the time series of VIF values
-#'  vif(fit,isPrint=TRUE)
+#' vif(fundamental_model,isPrint=TRUE)
 #'  }
 #' @export
 vif <- function(ffmObj, digits=2, isPrint=TRUE, isPlot =TRUE, lwd =2,stripText.cex =1,axis.cex=1, title = TRUE, ...)

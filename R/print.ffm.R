@@ -13,6 +13,7 @@
 #' significant digits. Default is 3.
 #' @param ... optional arguments passed to the \code{print} method.
 #'    
+#' @return Returns an object of class \code{print.ffm}. 
 #' @author Yi-An Chen and Sangeetha Srinivasan
 #' 
 #' @seealso \code{\link{fitFfm}}, \code{\link{summary.ffm}}

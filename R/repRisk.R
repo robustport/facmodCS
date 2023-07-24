@@ -60,48 +60,47 @@
 #' 
 #' 
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' 
 #' # Fundamental Factor Model
-#' data("stocks145scores6")
-#' dat = stocks145scores6
-#' dat$DATE = zoo::as.yearmon(dat$DATE)
-#' dat = dat[dat$DATE >=zoo::as.yearmon("2008-01-01") & dat$DATE <= zoo::as.yearmon("2012-12-31"),]
-#'
-#'
-#' # Load long-only GMV weights for the return data
-#' data("wtsStocks145GmvLo")
-#' wtsStocks145GmvLo = round(wtsStocks145GmvLo,5)  
-#'                                                      
+#' library(PCRA)
+#' 
+#' dateRange <- c("2006-01-31","2010-12-31")
+#' stockItems <-  c("Date", "TickerLast",  "Return","Sector")
+#' factorItems <- c("BP","Beta60M","PM12M1M")
+#' facDatIT <- selectCRSPandSPGMI("monthly",
+#'                                dateRange = dateRange, 
+#'                                stockItems = stockItems, 
+#'                                factorItems = factorItems, 
+#'                                outputType = "data.table")
+#' asset.var="TickerLast" 
+#' ret.var="Return" 
+#' date.var = "Date"
+#' exposure.vars= factorItems
+#' asset.var="TickerLast" 
+#' ret.var="Return" 
+#' date.var = "Date"
+#' spec1 <- specFfm(data = facDatIT,asset.var = asset.var, ret.var = ret.var, 
+#'                 date.var = date.var, exposure.vars = exposure.vars,weight.var = NULL,
+#'                  addIntercept = TRUE, rob.stats = FALSE)
 #' # fit a fundamental factor model
-#' exposure.vars = c("SECTOR","ROE","BP","PM12M1M","SIZE","ANNVOL1M", "EP")
-#' fit.cross <- fitFfm(data = dat, 
-#'                     exposure.vars = exposure.vars,
-#'                     date.var = "DATE", 
-#'                     ret.var = "RETURN", 
-#'                     asset.var = "TICKER", 
-#'                     fit.method="WLS", 
-#'                     z.score = "crossSection")
-#'               
-#' repRisk(fit.cross, risk = "Sd", decomp = 'FCR', nrowPrint = 10,
-#'         digits = 4) 
-#'         
+#' mdlFit <- fitFfmDT(spec1)
+#' mdlRes <- extractRegressionStats(spec1,mdlFit)
+#' fit.cross <- convert(SpecObj = spec1,FitObj = mdlFit, RegStatsObj = mdlRes)
+#' repRisk(fit.cross, risk = "Sd", decomp = 'FCR', nrowPrint = 10,  digits = 4) 
 #' # get the factor contributions of risk 
-#' repRisk(fit.cross, wtsStocks145GmvLo, risk = "Sd", decomp = 'FPCR', 
+#' repRisk(fit.cross, risk = "Sd", decomp = 'FPCR', 
 #'         nrowPrint = 10)       
 #'            
 #' # portfolio only decomposition
-#' repRisk(fit.cross, wtsStocks145GmvLo, risk = c("VaR", "ES"), decomp = 'FPCR', 
+#' repRisk(fit.cross, risk = c("VaR", "ES"), decomp = 'FPCR', 
 #'         portfolio.only = TRUE)    
 #'            
 #' # plot
-#' repRisk(fit.cross, wtsStocks145GmvLo, risk = "Sd", decomp = 'FPCR', 
+#' repRisk(fit.cross, risk = "Sd", decomp = 'FPCR', 
 #'         isPrint = FALSE, nrowPrint = 15, isPlot = TRUE, layout = c(4,2))  
-
 #' }
 #' @export    
-
-
 repRisk <- function(object, ...) {
   
   # check input object validity

@@ -49,17 +49,30 @@ Calculate and plot the Factor Model Variance Inflaction Factor Values for a fitt
                  So, at least 2 explanatory variables are required in \code{exposure.vars} of fitted model to find the VIF.
 }
 \examples{
-\dontrun{
-#Load the data
- data("factorDataSetDjia5Yrs")
+\donttest{
+library(PCRA)
+# load data 
+data(stocksCRSP)
+data(factorsSPGMI)
+dateRange <- c("2006-01-31","2010-12-31")
+stockItems <-  c("Date", "TickerLast", "CapGroupLast", "Return",
+                "Ret13WkBill","MktIndexCRSP","Sector")
+                factorItems <- c("BP","Beta60M","PM12M1M")
+stocks_factors <- selectCRSPandSPGMI("monthly", dateRange = dateRange, 
+stockItems = stockItems, factorItems = factorItems, outputType ="data.table")
+                                    
 
-#Fit a Ffm
-require(FactorAnalytics)
- fit <- fitFfm(data=factorDataSetDjia5Yrs, asset.var="TICKER", ret.var="RETURN",
-              date.var="DATE", exposure.vars=c("SECTOR", "P2B", "EV2S", "MKTCAP"))
+# fit a fundamental factor model with style variables BP and LogMktCap
+
+fundamental_model <- fitFfm(data = stocks_factors, 
+                           asset.var = "TickerLast", 
+                           ret.var = "Return", 
+                           date.var = "Date", 
+                           exposure.vars = c("BP", "PM12M1M")
+                           )
 
 #Plot and print the time series of VIF values
- vif(fit,isPrint=TRUE)
+vif(fundamental_model,isPrint=TRUE)
  }
 }
 \author{

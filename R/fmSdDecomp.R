@@ -52,7 +52,6 @@
 #' 
 #' 
 #' @export  
-
 fmSdDecomp <- function(object, factor.cov, ...){
   # check input object validity
   if (!inherits(object, c("tsfm", "sfm", "ffm"))) {

@@ -34,43 +34,8 @@
 #' 
 #' @author Douglas Martin, Lingjie Yi
 #' @examples 
-#' \dontrun{
-#' #Load fundamental and return data 
-#' data("stocks145scores6")
-#' dat = stocks145scores6
-#' dat$DATE = zoo::as.yearmon(dat$DATE)
-#' dat = dat[dat$DATE >=zoo::as.yearmon("2008-01-01") & dat$DATE <= zoo::as.yearmon("2012-12-31"),]
-#'
-#'
-#' #Load long-only GMV weights for the return data
-#' data("wtsStocks145GmvLo")
-#' wtsStocks145GmvLo = round(wtsStocks145GmvLo,5)                         
-#'                                                                                  
-#' # fit a fundamental factor model
-#' exposure.vars = c("SECTOR","ROE","BP","PM12M1M","SIZE", "ANNVOL1M", "EP")
-#' fit.cross <- fitFfm(data = dat, 
-#'               exposure.vars = exposure.vars,
-#'               date.var = "DATE", 
-#'               ret.var = "RETURN", 
-#'               asset.var = "TICKER", 
-#'               fit.method="WLS", 
-#'               z.score = "crossSection")
-#'
-#' repReturn(fit.cross, wtsStocks145GmvLo, isPlot = FALSE, digits = 4)
-#' 
-#' repReturn(fit.cross, wtsStocks145GmvLo, isPrint = FALSE, isPlot = TRUE, 
-#'           which = 4)
-#'           
-#' repReturn(fit.cross, wtsStocks145GmvLo, isPrint = FALSE, isPlot = TRUE, 
-#'           which = 1, add.grid = TRUE, scaleType = 'same')
-#'           
-#' repReturn(fit.cross, wtsStocks145GmvLo, isPrint = FALSE, isPlot = TRUE, 
-#'           which = 2, add.grid = FALSE, zeroLine = TRUE, color = 'Blue', 
-#'           scaleType = 'free')              
-#' }
+#' args(repReturn)
 #' @export
-
-
 repReturn <- function(ffmObj, weights = NULL, isPlot = TRUE, isPrint = TRUE, layout =NULL, scaleType = 'free',
                       stripLeft = TRUE,stripText.cex =1,axis.cex=1, digits = 1, titleText = TRUE, which = NULL, ...) {
   

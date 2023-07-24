@@ -59,29 +59,6 @@ tsPlotMP(
 \description{
 Plot time series with specific plotting parameters
 }
-\examples{
-\dontrun{
-#Load the data
-data("stocks145scores6")
-dat = stocks145scores6
-returns = tapply(dat$RETURN, list(dat$DATE, dat$TICKER), I)
-ret = xts::xts(returns[,1:5], zoo::as.yearmon(rownames(returns)))
-
-#generate return time series plot               
-tsPlotMP(ret, color = 'Blue')
-tsPlotMP(ret, scaleType = "same", zeroLine = FALSE)
-tsPlotMP(ret, stripLeft = FALSE, main = 'Time Series Plot')
-tsPlotMP(ret, stripLeft = FALSE, main = 'Time Series Plot', layout = c(3,3))
-
-# example to add customized lines (abline)
-tsPlotMP(ret, color = 'Blue',main='test',zeroLine=FALSE,panel=function(...){
-			panel.abline(v = 2000, lty = 3)
-			panel.abline(h = 0, lty = 3) 
-			panel.abline(h = 0.1, lty = 3)
-			panel.abline(h = -0.1, lty = 3)
-			panel.xyplot(...)}) 
-}  
-}
 \author{
 Douglas Martin, Lingjie Yi
 }

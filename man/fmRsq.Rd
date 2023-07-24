@@ -55,27 +55,38 @@ Else, only the mean values are printed. Default is \code{TRUE}.}
 Calcluate and plot the Factor Model R-Squared, Adjusted R-Squared for a portfolio of assets
 }
 \examples{
-\dontrun{
+\donttest{
 #Load the data
- data("factorDataSetDjia5Yrs")
+# Fundamental Factor Model
+library(PCRA)
 
-#Fit a Ffm
-
- fit <- fitFfm(data = factorDataSetDjia5Yrs, 
-               asset.var = "TICKER", 
-               ret.var = "RETURN",
-               date.var = "DATE", 
-               exposure.vars = "SECTOR")
-
-#Calcuate and plot the portfolio R-squared values
- fmRsq(fit)
- 
- fit1 <- fitFfm(data=factorDataSetDjia5Yrs, asset.var="TICKER", ret.var="RETURN",
-              date.var="DATE", exposure.vars=c("SECTOR", "P2B", "EV2S", "MKTCAP"), 
-              addIntercept=TRUE)
+dateRange <- c("2006-01-31","2010-12-31")
+stockItems <-  c("Date", "TickerLast",  "Return","Sector")
+factorItems <- c("BP","Beta60M","PM12M1M")
+facDatIT <- selectCRSPandSPGMI("monthly",
+                               dateRange = dateRange, 
+                               stockItems = stockItems, 
+                               factorItems = factorItems, 
+                               outputType = "data.table")
+asset.var="TickerLast" 
+ret.var="Return" 
+date.var = "Date"
+exposure.vars= factorItems
+asset.var="TickerLast" 
+ret.var="Return" 
+date.var = "Date"
+spec1 <- specFfm(data = facDatIT,asset.var = asset.var, ret.var = ret.var, 
+                date.var = date.var, exposure.vars = exposure.vars,weight.var = NULL,
+                 addIntercept = TRUE, rob.stats = FALSE)
+# fit a fundamental factor model
+mdlFit <- fitFfmDT(spec1)
+mdlRes <- extractRegressionStats(spec1,mdlFit)
+fit.cross <- convert(SpecObj = spec1,FitObj = mdlFit, RegStatsObj = mdlRes)
+#Calculate and plot the portfolio R-squared values
+fmRsq(fit.cross)
 
 #Plot and print the time series of Adj R-squared and VIF values
- fmRsq(fit1, rsqAdj=TRUE, isPrint=TRUE, plt.type = 2)
+fmRsq(fit.cross, rsqAdj=TRUE, isPrint=TRUE, plt.type = 2)
 
 }
 

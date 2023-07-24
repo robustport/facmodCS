@@ -35,25 +35,6 @@ are used to predict the asset returns during all dates from the fitted
 \code{ffm} object. For predictions based on estimated factor returns from a 
 specific period use the \code{pred.date} argument.
 }
-\examples{
-\dontrun{
-# Load fundamental and return data
- data("factorDataSetDjia5Yrs")
-
-# fit a fundamental factor model
-fit <- fitFfm(data = factorDataSetDjia5Yrs, 
-              asset.var = "TICKER", 
-              ret.var = "RETURN", 
-              date.var = "DATE", 
-              exposure.vars = c("P2B", "MKTCAP"))
-              
-# generate random data
-newdata <- as.data.frame(unique(factorDataSetDjia5Yrs$TICKER))
-newdata$P2B <- rnorm(nrow(newdata))
-newdata$MKTCAP <- rnorm(nrow(newdata))
-pred.fund <- predict(fit, newdata)
-}
-}
 \seealso{
 \code{\link{fitFfm}}, \code{\link{summary.ffm}}, 
 \code{\link[stats]{predict.lm}}, \code{\link[robustbase]{predict.lmrob}}

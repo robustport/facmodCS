@@ -50,3 +50,34 @@ fitting is done.  This function summarizes them and returns a spec object for
 cross-sectional regressions.  It also preps the data. An object of class 
 \code{"ffmSpec"} is returned.
 }
+\examples{
+\donttest{
+library(PCRA)
+
+dateRange <- c("2006-01-31","2010-12-31")
+stockItems <-  c("Date", "TickerLast",  "Return","Sector")
+factorItems <- c("BP","Beta60M","PM12M1M")
+facDatIT <- selectCRSPandSPGMI("monthly",
+                               dateRange = dateRange, 
+                               stockItems = stockItems, 
+                               factorItems = factorItems, 
+                               outputType = "data.table")
+asset.var="TickerLast" 
+ret.var="Return" 
+date.var = "Date"
+exposure.vars= c("BP","Beta60M","PM12M1M")
+spec1 <- specFfm(data = facDatIT,asset.var = asset.var, ret.var = ret.var, 
+                 date.var = date.var, exposure.vars = exposure.vars,weight.var = NULL,
+                 addIntercept = TRUE, rob.stats = FALSE)
+spec1$exposure.vars
+
+#lag the exposures
+spec1 <- lagExposures(spec1)
+# standardize the exposures Cross-Sectionally
+spec1 <- standardizeExposures(spec1, Std.Type = "CrossSection") 
+# fit the model
+mdlFit <- fitFfmDT(spec1) 
+class(mdlFit)
+class(mdlFit$reg.listDT)
+}
+}

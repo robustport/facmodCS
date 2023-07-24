@@ -81,30 +81,31 @@ Calculate and plot the time series of t-statistic values and the
  model of class \code{ffm} produced by \code{fitFfm} or \code{fitFfmDT}
 }
 \examples{
-\dontrun{
-data("factorDataSetDjia5Yrs")
- 
-#Fit a Ffm with style factors only
- fit <- fitFfm(data = factorDataSetDjia5Yrs,
-               exposure.vars = c("MKTCAP","ENTVAL","P2B","EV2S"),
-               date.var = "DATE", 
-               ret.var = "RETURN", 
-               asset.var = "TICKER", 
-               fit.method = "WLS",
-               z.score = "crossSection")
+\donttest{
+library(PCRA)
+# load data 
+data(stocksCRSP)
+data(factorsSPGMI)
+dateRange <- c("2006-01-31","2010-12-31")
+stockItems <-  c("Date", "TickerLast", "CapGroupLast", "Return",
+                "Ret13WkBill","MktIndexCRSP","Sector")
+                factorItems <- c("BP","Beta60M","PM12M1M")
+stocks_factors <- selectCRSPandSPGMI("monthly", dateRange = dateRange, 
+stockItems = stockItems, factorItems = factorItems, outputType ="data.table")
+                                    
+
+# fit a fundamental factor model with style variables BP and LogMktCap
+
+fundamental_model <- fitFfm(data = stocks_factors, 
+                           asset.var = "TickerLast", 
+                           ret.var = "Return", 
+                           date.var = "Date", 
+                           exposure.vars = c("BP", "PM12M1M")
+                           )
 
 #Compute time series of t-stats and number of significant t-stats 
- stats = fmTstats(fit, isPlot = TRUE, lwd = 2, color = c("blue", "blue"), 
+ stats = fmTstats(fundamental_model, isPlot = TRUE, lwd = 2, color = c("blue", "blue"), 
                   z.alpha = 1.96)
-
-fit1 <- fitFfm(data = factorDataSetDjia5Yrs, asset.var = "TICKER", 
-               exposure.vars = c("SECTOR","MKTCAP","ENTVAL","P2B"),
-               ret.var = "RETURN", 
-               date.var = "DATE", 
-               addIntercept = TRUE)
-              
-#Compute time series of t-stats and number of significant t-stats 
- stats = fmTstats(fit1, isPlot = TRUE, z.alpha = 1.96) 
                
 # Fit a SECTOR+COUNTRY+Style model with Intercept
 # Create a COUNTRY column with just 3 countries
