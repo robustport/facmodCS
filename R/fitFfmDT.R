@@ -214,6 +214,7 @@ standardizeExposures <- function(specObj,
                                  Std.Type = c("None", 
                                               "CrossSection", 
                                               "TimeSeries"),
+                                 Ts.Std.Type = c("EWMA", "RobustEWMA"),
                                  lambda = 0.9){
   
   # Due to NSE notes related to data.table in R CMD check
@@ -230,6 +231,7 @@ standardizeExposures <- function(specObj,
   Std.Type = toupper(Std.Type[1])
   Std.Type <- match.arg(arg = Std.Type, choices = toupper(c("NONE", "CROSSSECTION", "TIMESERIES")), 
                         several.ok = FALSE )
+  Ts.Std.Type = match.arg(Ts.Std.Type)
   
   d_ <- eval(specObj$date.var) # name of the date var
   # Convert numeric exposures to z-scores
@@ -244,6 +246,15 @@ standardizeExposures <- function(specObj,
       
     }
     
+    huber_psi = function(x, c) {
+        if (abs(x) <= c) {
+            huber = x
+        } else {
+            huber = c * sign(x)
+        }
+        huber
+    }
+
     # Calculate z-scores looping through all numeric exposures
     if (grepl(Std.Type, "CROSSSECTION")) {
       for (e_ in specObj$exposures.num) {
@@ -263,19 +274,86 @@ standardizeExposures <- function(specObj,
     } else {
       # for each exposure...quartion : do we need to weight it here?
       #startIdx <- ifelse(specObj$lagged,2,1)
-      for (e_ in specObj$exposures.num) {
-# for each asset compute the difference between its exposure at time t - 1 and
-# the Xsection mean of exposures and square it
-        dataDT[, ts := (get(e_) - mean(get(e_), na.rm = TRUE))^2, by = d_]
-        for ( i in 1:NROW(dataDT))
-          set(dataDT,i, "s", ifelse(dataDT$idx[i] <= 1,
-                                    dataDT$ts[i],
-                                    (1 - lambda) * dataDT$ts[i] + lambda * dataDT$s[i - 1] ))
-        # ???? # need timeSeries mean?
-        dataDT[, eval(e_) := (get(e_) - mean(get(e_), na.rm = TRUE))/sqrt(s), by = d_]
+      if (Ts.Std.Type == "EWMA") {
+          for (e_ in specObj$exposures.num) {
+            # for each asset compute the difference between its exposure at time t - 1 and
+            # the Xsection mean of exposures and square it
+            dataDT[, ts := (get(e_) - mean(get(e_), na.rm = TRUE))^2, by = d_]
+            for ( i in 1:NROW(dataDT))
+              set(dataDT,i, "s", ifelse(dataDT$idx[i] <= 1,
+                                        dataDT$ts[i],
+                                        (1 - lambda) * dataDT$ts[i] + lambda * dataDT$s[i - 1] ))
+            # ???? # need timeSeries mean?
+            dataDT[, eval(e_) := (get(e_) - mean(get(e_), na.rm = TRUE))/sqrt(s), by = d_]
+          }
+          dataDT[, ts := NULL]
+          dataDT[, s := NULL]
+      } else if (Ts.Std.Type == "RobustEWMA") {
+          # initialization with cross-section value (by date)
+          # roubst EMWA with only the sigma
+          d_ <- eval(specObj$date.var)
+
+          for (e_ in specObj$exposures.num) {             
+              dataDT[, mu := median(get(e_), na.rm=TRUE), by = d_]
+              dataDT[, sig := 1.4826 * mad(get(e_), na.rm=TRUE), by = d_]
+              
+              for (i in 1:nrow(dataDT)) {
+                  idx_i = dataDT$idx[i]
+                  e_i = dataDT[i, get(e_)]
+                  mu_i = dataDT$mu[i]
+                  
+                  sig_i = dataDT$sig[i]
+                  sig_i_1 = dataDT$sig[i-1]
+                  
+                  set(dataDT, i, "sig",
+                      ifelse(idx_i <= 1,
+                             sig_i,
+                             sqrt(sig_i_1^2 + (1-lambda) * ((sig_i_1 * huber_psi((e_i - mu_i)/sig_i_1, c=2.5))^2 - sig_i_1^2))
+                     ))
+              }
+              dataDT[, eval(e_) := (get(e_) - mu)/sig]
+          }
+          
+          dataDT[, mu := NULL]
+          dataDT[, sig := NULL]
+          
+      } else {
+          # initialization with time series value (by asset)
+          # roubst EMWA with both mu & sigma
+          a_ <- eval(specObj$asset.var)
+
+          for (e_ in specObj$exposures.num) {
+              dataDT[, mu := median(get(e_), na.rm=TRUE), by = a_]
+              dataDT[, sig := 1.4826 * mad(get(e_), na.rm=TRUE), by = a_]
+              
+              for (i in 1:nrow(dataDT)) {
+                  idx_i = dataDT$idx[i]
+                  e_i = dataDT[i, get(e_)]
+                  mu_i = dataDT$mu[i]
+                  mu_i_1 = dataDT$mu[i-1]
+                  sig_i = dataDT$sig[i]
+                  sig_i_1 = dataDT$sig[i-1]
+                  
+                  set(dataDT, i, "mu",
+                      ifelse(idx_i <= 1,
+                             mu_i,
+                             mu_i_1 + (1-lambda) * sig_i_1 * huber_psi((e_i - mu_i_1)/sig_i_1, c=2.5)
+                     ))
+                  
+                  set(dataDT, i, "sig",
+                      ifelse(idx_i <= 1,
+                             sig_i,
+                             sqrt(sig_i_1^2 + (1-lambda) * ((sig_i_1 * huber_psi((e_i - mu_i)/sig_i_1, c=2.5))^2 - sig_i_1^2))
+                     ))
+              }
+              
+              dataDT[, eval(e_) := (get(e_) - mu)/sig]
+          }
+          
+          dataDT[, mu := NULL]
+          dataDT[, sig := NULL]
       }
-      dataDT[, ts := NULL]
-      dataDT[, s := NULL]
+      
       
     }
   }
