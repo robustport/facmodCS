@@ -7,6 +7,7 @@
 standardizeExposures(
   specObj,
   Std.Type = c("None", "CrossSection", "TimeSeries"),
+  Ts.Std.Type = c("EWMA", "RobustEWMA"),
   lambda = 0.9
 )
 }
@@ -14,8 +15,9 @@ standardizeExposures(
 \item{specObj}{is a ffmSpec object,}
 
 \item{Std.Type}{method for exposure standardization; one of "none",
-"CrossSection", or "TimeSeries".
-Default is \code{"none"}.}
+"CrossSection", or "TimeSeries".}
+
+\item{Ts.Std.Type}{Default is \code{"none"}.}
 
 \item{lambda}{lambda value to be used for the EWMA estimation of residual 
 variances. Default is 0.9}
