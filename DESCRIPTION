@@ -1,7 +1,7 @@
 Package: facmodCS
 Type: Package
 Title: Cross-Section Factor Models
-Version: 1.0
+Version: 1.0.1
 Date: 2023-06-04
 Authors@R: c(person(given="Mido",family="Shammaa",role=c("aut","cre"),
     email="midoshammaa@yahoo.com"),
