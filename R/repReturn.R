@@ -133,13 +133,18 @@ repReturn <- function(ffmObj, weights = NULL, isPlot = TRUE, isPrint = TRUE, lay
   dat = merge(ret.p, sig.p, facRet.p, rk)
   
   secRet = c()
-  for(i in 1:length(exposures.char)){
-    chars = as.character(unique(ffmObj$data[[exposures.char[i]]]))
-    temp = rowSums(rk[,chars])
-    secRet = cbind(secRet,temp)
+  if (length(exposures.char) > 0) {
+    
+    
+    for(i in 1:length(exposures.char)){
+      chars = as.character(unique(ffmObj$data[[exposures.char[i]]]))
+      temp = rowSums(rk[,chars])
+      secRet = cbind(secRet,temp)
+    }
+    
+    colnames(secRet) = paste(exposures.char,"Ret",sep='')
+    secRet = xts(secRet, order.by = zoo::index(dat))
   }
-  colnames(secRet) = paste(exposures.char,"Ret",sep='')
-  secRet = xts(secRet, order.by = zoo::index(dat))
   FacRet = xts(rowSums(rk[,exposures.num]), order.by = zoo::index(dat))
   colnames(FacRet) = 'StyleFacRet'
   
@@ -184,16 +189,18 @@ repReturn <- function(ffmObj, weights = NULL, isPlot = TRUE, isPrint = TRUE, lay
                
              }, 
              "3L" = {  
-               if(titleText){
-                 main = "Portfolio Sector Returns"
-               }else(
-                 main = ''
-               )
-               ## Time Series plot of portfolio sector returns
-               tsPlotMP(dat[,c('FacRet',exposures.char.name)], 
-                        main = main, layout = c(3,4), stripLeft = stripLeft, 
-                        scaleType = scaleType, axis.cex = axis.cex, stripText.cex =stripText.cex, ...)
-               
+               if (length(exposures.char.name) > 0){ 
+                 if(titleText){
+                   main = "Portfolio Sector Returns"
+                 }else(
+                   main = ''
+                 )
+                 ## Time Series plot of portfolio sector returns
+                 tsPlotMP(dat[,c('FacRet',exposures.char.name)], 
+                          main = main, layout = c(3,4), stripLeft = stripLeft, 
+                          scaleType = scaleType, axis.cex = axis.cex, stripText.cex =stripText.cex, ...)
+                 
+               }
              },
              "4L" = {  
                if(titleText){
