@@ -126,7 +126,7 @@ fmTstats <- function(ffmObj, isPlot = TRUE, isPrint = FALSE,
     std.errors = matrix(unlist(std.errors), byrow = TRUE, nrow = time.periods)
     fac.names.indcty = lapply(seq(n.expo.char), function(x)
       paste0( levels(ffmObj$data[ ,exposures.char[x]])))
-    colnames(std.errors) <- c("Market", unlist(fac.names.indcty))
+    colnames(std.errors) <- make.names(c("Market", unlist(fac.names.indcty)))
     if(n.expo.num > 0)
     {
       #std.errs of stly factors 
@@ -136,7 +136,7 @@ summary(ffmObj)$sum.list[[a]]$coefficients[((fac.num+1):(fac.num+n.expo.num)),2]
       colnames(stdErr.sty) = exposures.num
       #Should be in same order as that of factor.returns
       std.errors = cbind(std.errors,stdErr.sty)
-      std.errors = std.errors[, colnames(ffmObj$factor.returns)]
+      std.errors = std.errors[, make.names(colnames(ffmObj$factor.returns))]
     }
     #tstatsTs = ffmObj$factor.returns/std.errors
     tstats = coredata(ffmObj$factor.returns/std.errors)

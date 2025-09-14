@@ -28,7 +28,7 @@
 #' For plots of a group of assets: \cr
 #' 1 = Time series plot of style factor exposures, \cr
 #' 2 = Boxplot of style factor exposures, \cr
-#' 3 = Barplot of means and vols of style factor exposures, and means of sector exposures (which have no vol). \cr \cr
+#' 3 = Barplot of means and vols of style factor exposures, and means of category exposures (which have no vol). \cr \cr
 #' @param type character. type of lattice plot when which=1; 'l' denotes a line, 'p' denotes a point, and 'b' and 'o' both denote both together.deafault is 'b'.
 #' @param ... other graphics parameters available in tsPlotMP(time series plot only) can be passed in through the ellipses 
 #' 
@@ -114,6 +114,7 @@ repExposures <- function(ffmObj, weights = NULL, isPlot = TRUE, isPrint = TRUE, 
   
   if(isPlot){
     oldpar <- par(no.readonly = TRUE)
+    oldpar$new = FALSE
     on.exit(par(oldpar)) 
     par(mfrow = c(1,1))
     
@@ -164,13 +165,13 @@ repExposures <- function(ffmObj, weights = NULL, isPlot = TRUE, isPrint = TRUE, 
                {
                  main1 = "Style Exposures Means"
                  main2 = "Style Exposures Volatilities"
-                 main3 = "Sector Exposures"
+                 main3 = sprintf("%s Exposures",exposures.char)
                }
                else if(length(exposures.num)==1)
                {
                  main1 = "Style Exposures Mean"
                  main2 = "Style Exposures Volatility"
-                 main3 = "Sector Exposures"
+                 main3 = sprintf("%s Exposures",exposures.char)
                }
                dat.StMean = as.data.frame(list("ids" = rep(main1, length(a)), "variable"= names(a), "value"= as.numeric(a)))
                dat.StVol = as.data.frame(list("ids" = rep(main2, length(b)), "variable"= names(b), "value"= as.numeric(b)))
