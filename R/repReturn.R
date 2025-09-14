@@ -196,7 +196,7 @@ repReturn <- function(ffmObj, weights = NULL, isPlot = TRUE, isPrint = TRUE, lay
                    main = ''
                  )
                  ## Time Series plot of portfolio sector returns
-                 tsPlotMP(dat[,c('FacRet',exposures.char.name)], 
+                 tsPlotMP(dat[,c('FacRet',make.names(exposures.char.name))], 
                           main = main, layout = c(3,4), stripLeft = stripLeft, 
                           scaleType = scaleType, axis.cex = axis.cex, stripText.cex =stripText.cex, ...)
                  

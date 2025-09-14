@@ -964,7 +964,7 @@ extractRegressionStats <- function(specObj, fitResults, full.resid.cov=FALSE){
       
     }
     
-    
+    factor.names <- make.names(factor.names)
     # coefficients ----
     
     g <- reg.listDT[, .(g = .(coefficients(reg.list[[1]]))), by = d_]
@@ -1017,6 +1017,7 @@ extractRegressionStats <- function(specObj, fitResults, full.resid.cov=FALSE){
       
       beta <- cbind(beta.star[,1], B.style, beta.star[,-1])
       colnames(beta) <- factor.names
+      rownames(beta) <- asset.names
       beta.stms = as.matrix(betasDT[ get(d_) == max(get(d_)),cbind(B.mod, B.style)])
     } else    {
       #Exposure matrix for the last time period
