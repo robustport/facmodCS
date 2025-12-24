@@ -815,7 +815,18 @@ fitFfmDT <- function(ffMSpecObj,
 #' @param fitResults output from fitFfmDT
 #' @param full.resid.cov an option to calculate the full residual covariance or not
 #' 
-#' @return a structure of class ffm holding all the information
+#' @return A structure of class \code{"ffm"} (Fitted Fundamental Model) which is a list containing the comprehensive results of the factor model estimation. The primary components of this list are:
+#' \itemize{
+#'   \item **\code{factor.ret}**: An \code{xts} object containing the time series of estimated **factor returns**. The columns correspond to the factors specified in \code{specObj}.
+#'   \item **\code{factor.cov}**: The estimated **factor covariance matrix** (a square matrix). This is typically an $K \times K$ matrix, where $K$ is the number of factors.
+#'   \item **\code{beta}**: The matrix of estimated **factor exposures** (or loadings). This is an $N \times K$ matrix, where $N$ is the number of assets.
+#'   \item **\code{resid.var}**: A vector of the estimated **asset-specific residual variances**. This is an $N \times 1$ vector.
+#'   \item **\code{resid.cov}**: The estimated **full residual covariance matrix**. This will be an $N \times N$ matrix only if \code{full.resid.cov = TRUE}; otherwise, it will be \code{NULL} or an indicator that only the diagonal elements (\code{resid.var}) were computed.
+#'   \item **\code{R.squared}**: A vector of $R^2$ values for each cross-sectional regression.
+#'   \item **\code{call}**: The matched call to the fitting function.
+#'   \item **\code{date}**: The date of the factor model fit.
+#'   \item **\code{spec}**: The original \code{specObj} used for the fitting process.
+#' }
 #' @details this function operates on the specObje data and the output of fitFfm
 #' to get information on the fundamental factor.
 #' 
