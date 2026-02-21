@@ -150,6 +150,22 @@ repReturn <- function(ffmObj, weights = NULL, isPlot = TRUE, isPrint = TRUE, lay
   
   if(isPlot){
     
+    optimal_layout <- function(n) {
+      if (n <= 0) stop("Number of subplots must be positive")
+      
+      # Start from the square root
+      r <- floor(sqrt(n))
+      c <- ceiling(n / r)
+      
+      # Adjust if needed
+      while (r * c < n) {
+        r <- r + 1
+        c <- ceiling(n / r)
+      }
+      
+      return(c(rows = r, cols = c))
+    }
+    
     which.vec <- which
     which <- which[1]
     
@@ -184,7 +200,7 @@ repReturn <- function(ffmObj, weights = NULL, isPlot = TRUE, isPrint = TRUE, lay
                )
                ## Time Series plot of portfolio style factors returns
                tsPlotMP(dat[,c('FacRet',exposures.num,'ResidRet')], 
-                        main = main, layout = c(3,3), stripLeft = stripLeft, 
+                        main = main, layout = optimal_layout(length(c("FacRet", exposures.num, "ResidRet"))), stripLeft = stripLeft, 
                         scaleType = scaleType, axis.cex = axis.cex, stripText.cex =stripText.cex, ...)
                
              }, 
@@ -197,7 +213,7 @@ repReturn <- function(ffmObj, weights = NULL, isPlot = TRUE, isPrint = TRUE, lay
                  )
                  ## Time Series plot of portfolio sector returns
                  tsPlotMP(dat[,c('FacRet',make.names(exposures.char.name))], 
-                          main = main, layout = c(3,4), stripLeft = stripLeft, 
+                          main = main, layout = optimal_layout(length(c("FacRet", exposures.char.name))), stripLeft = stripLeft, 
                           scaleType = scaleType, axis.cex = axis.cex, stripText.cex =stripText.cex, ...)
                  
                }
