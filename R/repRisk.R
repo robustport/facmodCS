@@ -399,7 +399,7 @@ repRisk.ffm <- function(object, weights = NULL, risk = c("Sd", "VaR", "ES"),
         }
         output = list(decomp = result)
         names(output) = paste('Portfolio',decomp, Type, sep = ' ')
-        
+        return(output)
       }
       if(isPlot & !mul.port){
    
@@ -429,7 +429,6 @@ repRisk.ffm <- function(object, weights = NULL, risk = c("Sd", "VaR", "ES"),
         }
         
       }
-      return(output)
     }
     
   }
@@ -485,6 +484,8 @@ repRisk.ffm <- function(object, weights = NULL, risk = c("Sd", "VaR", "ES"),
   } 
   else
     output.list<- riskReport(object,1, mul.port = FALSE)
+  
+  if(isPrint)
   return(output.list)
   
 }
