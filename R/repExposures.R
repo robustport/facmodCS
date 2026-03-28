@@ -182,14 +182,17 @@ repExposures <- function(ffmObj, weights = NULL, isPlot = TRUE, isPrint = TRUE, 
                                scales=list(y=list(cex=axis.cex), x=list(cex=axis.cex, rot = 90)),par.strip.text=list(col="black", cex = stripText.cex))
                plt2 = barchart(value~(variable)|ids,groups = ids,data=dat.StVol,stack =TRUE,layout = layout,col = color,ylab = list(label = "Percentage (%)",cex = axis.cex),
                                scales=list(y=list(cex=axis.cex), x=list(cex=axis.cex, rot = 90)),par.strip.text=list(col="black", cex = stripText.cex))
+               if(length(exposures.char)>0)
                plt3 = barchart(value~(variable)|ids,groups = ids,data=dat.SecMean,stack =TRUE,layout = layout,col = color,ylab = list(label = "Percentage (%)",cex = axis.cex),
                                scales=list(y=list(cex=axis.cex), x=list(cex=axis.cex, rot = 90)),par.strip.text=list(col="black", cex = stripText.cex), strip.left = F)
-               
-               print(plt1, split=c(1,1,2,2), more=TRUE)
-               print(plt2, split=c(2,1,2,2), more=TRUE)
-               print(plt3, position = c(.25,0,0.75,0.5), more = FALSE)
-               
-               
+               if(length(exposures.char)>0){
+                 print(plt1, split = c(1, 1, 2, 2), more = TRUE)
+                 print(plt2, split = c(2, 1, 2, 2), more = TRUE)
+                 print(plt3, position = c(0.25, 0, 0.75, 0.5), more = FALSE)}
+               else {
+                 print(plt1, split = c(1, 1, 2, 1), more = TRUE)
+                 print(plt2, split = c(2, 1, 2, 1), more = TRUE)
+               }
              },
              invisible()       
       )        
