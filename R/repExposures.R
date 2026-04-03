@@ -117,6 +117,7 @@ repExposures <- function(ffmObj, weights = NULL, isPlot = TRUE, isPrint = TRUE, 
     oldpar$new = FALSE
     on.exit(par(oldpar)) 
     par(mfrow = c(1,1))
+    plot.new()
     
     which.vec <- which
     which <- which[1]
@@ -201,7 +202,9 @@ repExposures <- function(ffmObj, weights = NULL, isPlot = TRUE, isPrint = TRUE, 
       if (length(which.vec)>1) {
         which.vec <- which.vec[-1]
         which <- which.vec[1]
-        par(ask=TRUE)
+        if (which %in% c(1, 2)) {
+          par(ask = TRUE)
+        }
       } else {which=NULL}   
     }
     

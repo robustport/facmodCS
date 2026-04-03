@@ -42,8 +42,11 @@ repReturn <- function(ffmObj, weights = NULL, isPlot = TRUE, isPrint = TRUE, lay
   if (!inherits(ffmObj, "ffm")) {
     stop("Invalid argument: ffmObjshould be of class'ffm'.")
   }
-  oldpar <- par(no.readonly = TRUE) # code line i
-  on.exit(par(oldpar)) 
+  if (isPlot) {
+    oldpar <- par(no.readonly = TRUE)
+    on.exit(par(oldpar))
+    plot.new()
+  }
   which.numeric <- sapply(ffmObj$data[,ffmObj$exposure.vars,drop=FALSE], is.numeric)
   exposures.num <- ffmObj$exposure.vars[which.numeric]
   exposures.char <- ffmObj$exposure.vars[!which.numeric]
@@ -252,7 +255,9 @@ repReturn <- function(ffmObj, weights = NULL, isPlot = TRUE, isPrint = TRUE, lay
       if (length(which.vec)>1) {
         which.vec <- which.vec[-1]
         which <- which.vec[1]
-        par(ask=TRUE)
+        if (which %in% c(1, 2)) {
+          par(ask = TRUE)
+        }
       } else {which=NULL}   
     }
     
