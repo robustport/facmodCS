@@ -84,7 +84,13 @@ riskDecomp.ffm <- function(object, risk, weights = NULL, portDecomp =TRUE, facto
     
     # get portfolio beta.star: 1 x (K+1)
     beta.star <- as.matrix(cbind(weights %*% beta, sqrt(sum(weights^2 * object$resid.var))))
-    resid.xts <- xts::as.xts( t(t(residuals(object))/sqrt(object$resid.var)) %*% weights)
+    # Portfolio residual factor: w'e_t scaled by the residual "exposure" sigma_eps,
+    # so that beta.star[,"Resid"] * resid.xts equals the portfolio residual w'e_t.
+    # (Previously sum_i w_i e_it/sigma_i, which is inconsistent with that exposure.)
+    sigma.eps <- sqrt(sum(weights^2 * object$resid.var[asset.names]))
+    resid.mat <- residuals(object)[, asset.names]
+    resid.xts <- xts::xts(zoo::coredata(resid.mat) %*% weights,
+                          order.by = zoo::index(resid.mat)) / sigma.eps
   }
   else
   {
@@ -154,8 +160,10 @@ riskDecomp.ffm <- function(object, risk, weights = NULL, portDecomp =TRUE, facto
               dat = object$data
               # return data for portfolio
               R.xts = tapply(dat[,object$ret.var], list(dat[,object$date.var], dat[,object$asset.var]), FUN = I)
-              R.xts <- R.xts * weights
-              R.xts = xts::as.xts(rowSums(R.xts), order.by = object$time.periods)
+              # Portfolio return w'r_t. (Previously R.xts * weights, which recycles the
+              # weights down the columns and scales row t by weights[t], not column i by weights[i].)
+              R.xts <- R.xts[, asset.names, drop = FALSE] %*% weights
+              R.xts = xts::as.xts(drop(R.xts), order.by = object$time.periods)
               names(R.xts) = 'RETURN'
               
               if (type=="np") { 
